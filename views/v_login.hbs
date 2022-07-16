@@ -1,0 +1,175 @@
+<!--<nav>
+    <h4>Bariact</h4>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/login">Login</a></li>
+        <li><a href="/register">Register</a></li>
+    </ul>
+</nav>-->
+
+{{#if user}} 
+<nav>
+    <div class="logo-name">
+        <div class="logo-image">
+            <img src="/logo.png" alt="">
+        </div>
+
+        <span class="logo_name">BARIACT</span>
+    </div>
+
+    <div class="menu-items">
+        
+        <ul class="nav-links">
+            <li><a href="/">
+                <i class="uil uil-estate"></i>
+                <span class="link-name">Dashboard</span>
+            </a></li>
+            <li><a href="/diet/view">
+                <i class="uil uil-utensils"></i>
+                <span class="link-name">Diet</span>
+            </a></li>
+            <li><a href="/exercise/view">
+                <i class="uil uil-basketball"></i>
+                <span class="link-name">Exercise</span>
+            </a></li>
+            <li><a href="/screening/view">
+                <i class="uil uil-clipboard-alt"></i>
+                <span class="link-name">Screening Form</span>
+            </a></li>   
+                <li><a href="#">
+                <i class="uil uil-chart"></i>
+                <span class="link-name">Analytics</span>
+            </a></li>
+            
+            <li><a href="/profile/display">
+                <i class="uil uil-user-circle"></i>
+                <span class="link-name">Profile</span>
+            </a></li>
+          
+        </ul>
+        
+        <ul class="logout-mode">
+     
+            <li><a href="/auth/logout">
+                <i class="uil uil-signout"></i>
+                <span class="link-name">Logout</span>
+            </a></li>
+            
+
+            <li class="mode">
+                <a href="#">
+                    <i class="uil uil-moon"></i>
+                <span class="link-name">Dark Mode</span>
+            </a>
+
+            <div class="mode-toggle">
+                <span class="switch"></span>
+            </div>
+        </li>
+        </ul>        
+    </div>
+</nav>
+
+{{else}}
+<nav>
+    <div class="logo-name">
+        <div class="logo-image">
+            <img src="/logo.png" alt="">
+        </div>
+        <span class="logo_name">BARIACT</span>
+    </div>
+
+    <div class="menu-items">
+		
+        <ul class="nav-links">
+             <li><a href="/">
+                <i class="uil uil-estate"></i>
+                <span class="link-name">Home</span>
+            </a></li>
+			<li><a href="/login">
+				<i class="uil uil-signin"></i>
+				<span class="link-name">Login</span>
+			</a></li>
+
+			<li><a href="/register">
+				<i class="uil uil-file-info-alt"></i>
+				<span class="link-name">Register</span>
+			</a></li>
+		</ul>
+	</div>
+</nav>
+{{/if}}
+
+<section class="dashboard">
+        <div class="top">
+            <i class="uil uil-bars sidebar-toggle"></i>
+        </div>
+        <div class="dash-content">
+            <div class="overview">
+          
+                <div class="title">
+                        <i class="uil uil-signin"></i>
+                        <span class="text">BARIACT Login Form</span>
+                </div>
+                
+                {{#if message}}
+                <br>
+                <div class="container" style="background-color: #ffffff;">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Failed! </strong>{{message}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div>
+                {{/if}}
+
+            
+                {{#if success}}
+                <div class="container" style="background-color: #ffffff;">
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Success! </strong>{{success}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div>
+                {{/if}}
+
+                <div class="activity">
+                    <div class="card">
+                        <div class="card-header">Login Form</div>
+                        <div class="card-body">
+                            
+                            <form action="/auth/login" method="POST">
+                                        
+                                <div class="form-group" style="padding: 5px;">
+                                    <label for="email">Email address</label>
+                                    <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter Email">
+                                </div>
+                                
+                                <div class="form-group" style="padding: 5px;">
+                                    <label for="password">Password</label>
+                                    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                                </div>
+                                
+                                <button type="submit" class="btn btn-primary" style="padding: 5px;">Login</button>
+                                
+                                <!--<div id="g_id_onload"
+                                    data-client_id="812135292440-utdtvo48jbephucsn5j6ucl88a3upnlh.apps.googleusercontent.com"
+                                    data-callback="handleCredentialResponse">
+                                </div>
+                                <div class="g_id_signin" data-type="standard" data-onsuccess="onSignIn"></div>-->
+                                
+                                
+                            </form>
+                            
+                            
+                            
+                        </div>
+                    </div>
+                    {{#if message }}
+                    <h4 class "alert alert-danger mt-4">{{message}}</h4>
+                    {{/if}}
+                </div>
+                
+               
+            </div>
+        </div>
+</section>

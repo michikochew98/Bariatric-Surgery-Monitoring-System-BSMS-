@@ -1,0 +1,266 @@
+<div class="col-6" style="display:none;">
+	<div class="form-floating mb-3">
+		<input type="datetime" class="form-control" id="temp_time" name="temp_time" value="{{{this.time}}}">
+		<label for="temp_time">Select Temporary Time</label>
+	</div>
+</div>
+
+<div class="col-6">
+	<div class="form-floating mb-3">
+		<input type="datetime-local" class="form-control" id="time" placeholder="Select Time" name="time" id="time" value="{{{this.time}}}">
+		<label for="time">Select Time</label>
+	</div>
+</div>
+
+
+<div class="col-6">
+	<div class="form-floating mb-3">	
+		<select class="form-select"  id="type" name="type" placeholder="Meal" aria-label="type" aria-selected="{{{this.type}}}" aria-valuetext="{{{this.type}}}" aria-valuenow="{{{this.type}}}">
+			
+			{{#if this.type}}
+			<option value="{{this.type}}" selected>{{this.type}}</option>
+			{{/if}}
+			
+			<option value="breakfast">breakfast</option>
+			<option value="brunch">brunch</option>
+			<option value="lunch">lunch</option>
+			<option value="tea">tea</option>
+			<option value="dinner">dinner</option>
+			<option value="supper">supper</option>
+		</select>
+		<label for="type">Meal</label>
+	</div>
+</div>
+
+<div class="col-6">
+	<div class="form-floating mb-3">
+		<input type="text" class="form-control" id="name" placeholder="Food Name" name="name" id="name" value="{{this.name}}">
+		<label for="name">Food Name</label>
+	</div>
+</div>
+
+<div class="col-6">
+	<div class="form-floating mb-3">
+		{{#if user.ic}}
+		<!--IC Input Field--> 
+		<div class="form-group" id="ic" name= "ic">
+			<input type="hidden" class="form-control" id="ic" name= "ic" value="{{user.ic}}">
+		</div>
+		<!--Name Input Field--> 
+		<div class="form-group" id="fullname" name= "fullname">
+			<input type="hidden" class="form-control" id="fullname" name= "fullname" value="{{user.fullname}}">
+		</div>
+		{{/if}}
+
+		{{#if this.ic}}
+		<!--IC Input Field--> 
+		<div class="form-group" id="ic" name= "ic">
+			<input type="hidden" class="form-control" id="ic" name= "ic" value="{{this.ic}}">
+		</div>
+		<!--Name Input Field--> 
+		<div class="form-group" id="fullname" name= "fullname">
+			<input type="hidden" class="form-control" id="fullname" name= "fullname" value="{{this.fullname}}">
+		</div>
+		{{/if}}
+		
+		{{#if assignedTo}}     
+		<div class="form-group" id="assignedTo" name= "assignedTo">
+			<input type="hidden" class="form-control" id="assignedTo" name= "assignedTo" value="{{assignedTo}}">
+		</div>
+		{{/if}}
+	
+		<select class="form-select"  id="serving_type" name="serving_type" placeholder="Serving Type" aria-label="serving_type" aria-selected="{{{this.serving_type}}}" aria-valuetext="{{{this.serving_type}}}" aria-valuenow="{{{this.serving_type}}}" >
+			
+			<!--hidangan & sajian & set-->
+		
+			{{#if this.serving_type}}
+			<option value="{{this.serving_type}}" selected>{{this.serving_type}}</option>
+			{{/if}}
+			
+			<option value="hidangan (kecil) | serving (small)">hidangan (kecil) | serving (small)</option>
+			<option value="hidangan (biasa) | serving (regular)">hidangan (biasa) | serving (regular)</option>
+			<option value="hidangan (besar) | serving (large)">hidangan (besar) | serving (large)</option>
+			<option value="set | set">set | set</option>
+			<option value="sajian (pinggan 23cm) | portion">sajian (pinggan 23cm) | portion</option>
+			
+			<!--biji-->
+			<option value="biji | piece">biji | piece</option>
+			<option value="biji sederhana | medium whole">biji sederhana | medium whole</option>
+			<option value="biji | one half">biji | one half</option>
+			<option value="biji besar | large whole">biji besar | large whole</option>
+			
+			<!--ekor-->
+			<option value="ekor | whole ">ekor | whole</option>
+					
+			<!--sudu-->
+			<option value="sudu besar | tablespoon">sudu besar | tablespoon</option>
+			<option value="sudu teh | teaspoon">sudu teh | teaspoon</option>
+			<option value="sudu cina | chines spoons ">sudu cina | chines spoons </option>
+			
+			<!--senduk-->
+			<option value="senduk | scoop">senduk | scoop</option>
+			<option value="senduk | ladle">senduk | ladle</option>
+			
+			<!--mangkuk-->
+			<option value="mangkuk | bowl">mangkuk | bowl</option>
+			<option value="mangkuk nasi | rice bowl ">mangkuk nasi | rice bowl </option>
+			<option value="mangkuk kecil | small bowl">mangkuk kecil | small bowl</option>
+			<option value="mangkuk sup (16 dan 1/2 cm) | soup bowl (16 and 1/2cm)">mangkuk sup (16 dan 1/2 cm) | soup bowl (16 and 1/2cm)</option>
+			
+			<!--gelas and cup-->
+			<option value="gelas (besar) | glass (large)">gelas (besar) | glass (large)</option>
+			<option value="gelas (kecil) | glass (small)">gelas (kecil) | glass (small)</option>
+			<option value="gelas (sederhana) | glass (medium)">gelas (sederhana) | glass (medium)</option>
+			<option value="cawan | cup">cawan | cup</option>
+				
+			<!--pinggan-->
+			<option value="pinggan (23 cm) | plate (23 cm)">pinggan (23 cm) | plate (23 cm)</option>
+			<option value="pinggan (20 cm) | plate (20 cm)">pinggan (20 cm) | plate (20 cm)</option>
+			<option value="pinggan (16 cm) | plate (16 cm)">pinggan (16 cm) | plate (16 cm)</option>
+					
+			<!--piece-->		
+			<option value="ketul | piece">ketul | piece</option>
+			<option value="keping | pieces">keping | pieces</option>
+			
+			<!--batang & stick-->
+			<option value="batang | bar">batang | bar</option>
+			<option value="batang | stick">batang | stick</option>
+			<option value="cucuk | sticks">cucuk | sticks</option>
+			
+			
+			<option value="tin | can">tin | can</option>
+			<option value="kotak | carton">kotak | carton</option>
+			
+			<option value="paket | packet">paket | packet</option>
+			<option value="bekas | container">bekas | container	</option>
+			
+			
+			<option value="potong | slice">potong | slice</option>
+			<option value="hiris | slices">hiris | slices</option>
+			<option value="kon | cone">kon | cone</option>
+			<option value="kiub | cube">kiub | cube</option>
+			<option value="ulas | fruits">ulas | fruits</option>
+		
+	
+		</select>
+		<label for="serving_type">Serving Type</label>
+	</div>
+</div>
+
+<div class="col-6">
+	<div class="form-floating mb-3">
+		<input type="number" class="form-control" id="serving_size" placeholder="Serving Size" name="serving_size" id="serving_size" value="{{this.serving_size}}" min="1" onkeyup="validateSS();" required>
+		<label for="serving_size">Serving Size</label>
+		<small style="float: left;">Minimum Value: 1</small><br>
+		<small  id="P_incorrect" class="invalid" style="display: none; color:red; float: left;"><i class="bi bi-exclamation-circle-fill"></i> Must contain minimum value of 1</small>
+		<small  id="P_correct" class="valid" style="display: none; color:rgb(146, 231, 17); float: left;"><i class="bi bi-check-circle-fill"></i> Correct</small>
+	</div>
+</div>
+
+<div class="form-group" id="ss" name= "ss">
+	<input type="hidden" class="form-control" id="ss" name= "ss" value="ss_valid">
+</div>
+		
+<div class="col-6">
+	<div class="form-floating mb-3">
+		<input type="number" class="form-control" id="calories" placeholder="Calories" name="calories" id="calories" value="{{this.calories}}"  min="1" onkeyup="validateC();" required>
+		<label for="calories">Calories</label>
+		<small style="float: left;">Minimum Value: 1</small><br>
+		<small  id="C_incorrect" class="invalid" style="display: none; color:red; float: left;"><i class="bi bi-exclamation-circle-fill"></i> Must contain minimum value of 1</small>
+		<small  id="C_correct" class="valid" style="display: none; color:rgb(146, 231, 17); float: left;"><i class="bi bi-check-circle-fill"></i> Correct</small>
+	</div>
+</div>
+
+<div class="form-group" id="c" name= "c">
+	<input type="hidden" class="form-control" id="c" name= "c" value="c_valid">
+</div>
+
+<div class="col-12 d-grid">
+	<button class="btn btn-primary" type="submit">Submit</button>
+</div>
+
+
+<script>
+	
+	//2013-02-27T23:57:55
+	
+	console.log("Time: "+document.getElementById("temp_time").value);
+	
+	var datep = new Date(document.getElementById("temp_time").value);
+	var dayp = datep.getDate();
+	if(dayp < 10){
+		dayp = '0' + dayp.toString();
+	}
+	
+	var monthp = (datep.getMonth()+1);
+	if(monthp < 10){
+		monthp = '0' + monthp.toString();
+	}
+	
+	var hourp = datep.getHours();
+	if(hourp < 10){
+		hourp = '0' + hourp.toString();
+	}
+	
+	var minp = datep.getMinutes();
+	if(minp < 10){
+		minp = '0' + minp.toString();
+	}
+	
+	var secp = datep.getSeconds();
+	if(secp < 10){
+		secp = '0' + secp.toString();
+	}
+	
+	document.getElementById("time").value = datep.getFullYear() + "-" + monthp + "-" + dayp + "T" + hourp + ":" + minp + ":" + secp ;
+	
+
+
+function validateSS(){
+
+    var myP = document.getElementById("serving_size");
+    var P_incorrect = document.getElementById("P_incorrect");
+    var P_correct= document.getElementById("P_correct");
+
+    console.log(myP.value);
+    if(myP.value.length > 0){
+        if ((parseInt(myP.value) != null) && (parseInt(myP.value) != 0) && !(parseInt(myP.value) < 1)){
+            P_incorrect.classList.remove("invalid");
+            P_incorrect.classList.add("valid");
+            P_incorrect.style.display = "none";
+            P_correct.style.display = "block";  //display correct
+        }else{
+            P_incorrect.classList.remove("valid");
+            P_incorrect.classList.add("invalid");
+            P_incorrect.style.display="block";
+            P_correct.style.display = "none";
+        }
+    }
+    
+}
+
+function validateC(){
+
+    var myP = document.getElementById("calories");
+    var P_incorrect = document.getElementById("C_incorrect");
+    var P_correct= document.getElementById("C_correct");
+
+    console.log(myP.value);
+    if(myP.value.length > 0){
+        if ((parseInt(myP.value) != null) && (parseInt(myP.value) != 0) && !(parseInt(myP.value) < 1)){
+            P_incorrect.classList.remove("invalid");
+            P_incorrect.classList.add("valid");
+            P_incorrect.style.display = "none";
+            P_correct.style.display = "block";  //display correct
+        }else{
+            P_incorrect.classList.remove("valid");
+            P_incorrect.classList.add("invalid");
+            P_incorrect.style.display="block";
+            P_correct.style.display = "none";
+        }
+    }
+    
+}
+	
+</script>	
+			

@@ -1,0 +1,82 @@
+{{#if user.ic}}
+<!--IC Input Field--> 
+<div class="form-group" id="ic" name= "ic">
+<input type="hidden" class="form-control" id="ic" name= "ic" value="{{user.ic}}">
+</div>
+<!--Name Input Field--> 
+<div class="form-group" id="fullname" name= "fullname">
+<input type="hidden" class="form-control" id="fullname" name= "fullname" value="{{user.fullname}}">
+</div>
+{{/if}}
+
+{{#if this.ic}}
+<!--IC Input Field--> 
+<div class="form-group" id="ic" name= "ic">
+<input type="hidden" class="form-control" id="ic" name= "ic" value="{{this.ic}}">
+</div>
+<!--Name Input Field--> 
+<div class="form-group" id="fullname" name= "fullname">
+<input type="hidden" class="form-control" id="fullname" name= "fullname" value="{{this.fullname}}">
+</div>
+{{/if}}
+
+<!--Name Input Field
+<div class="form-group" style="padding: 5px;">
+	<label for="fullname">Fullname</label>
+	<input type="text" class="form-control" id="fullname" name= "fullname" placeholder="Enter Fullname" value = "{{this.fullname}}">
+</div>-->
+
+<!--Age Input Field
+<div class="form-group" id="age" name= "age">
+	<input type="hidden" class="form-control" id="age" name= "age" value="0">
+</div>-->
+
+
+	
+<!--Home Address Input Field--> 				
+<div class="form-group" style="padding: 5px;">
+	<label for="home_address">Home address</label>
+	<input type="text" class="form-control" id="home_address" name="home_address" placeholder="Enter Home Address" value="{{this.home_address}}">
+</div>
+
+<!--Phone Number Input Field--> 
+<div class="form-group" style="padding: 5px;">
+	<label for="phone_number">Phone Number</label>
+	<input type="number" class="form-control" id="phone_number" name="phone_number" placeholder="Eg: 0123456789" value="{{this.phone_number}}" pattern="(?=.*[0-9])" title="Must contain 10 or 11 digit numbers only"  onkeyup="validatePN();" required>
+	<small id="incorrect" class="invalid" style="display: none; color:red float: left;"><i class="bi bi-exclamation-circle-fill"></i> Please enter a valid phone number format(Eg: 0123456789)</small>
+    <small id="correct" class="valid" style="display: none; color:rgb(146, 231, 17); float: left;"><i class="bi bi-check-circle-fill"></i> Correct</small>
+</div>
+
+
+<div class="form-group" style="padding: 5px;">
+	<div class="btn-group">
+		<button type="submit" class="btn btn-primary" style="padding: 5px;">Update Profile</button>
+	</div>
+</div>
+
+
+<script>
+	function validatePN(){
+
+    var myP = document.getElementById("phone_number");
+    var P_incorrect = document.getElementById("incorrect");
+    var P_correct= document.getElementById("correct");
+	var pattern = /(?=.*[0-9])/g;
+
+    console.log(myP.value);
+    if(myP.value.length > 0){
+        if ((parseInt(myP.value) != null) && (myP.value.match(pattern)) && (myP.value.length == 10 || myP.value.length == 11)){
+            P_incorrect.classList.remove("invalid");
+            P_incorrect.classList.add("valid");
+            P_incorrect.style.display = "none";
+            P_correct.style.display = "block";  //display correct
+        }else{
+            P_incorrect.classList.remove("valid");
+            P_incorrect.classList.add("invalid");
+            P_incorrect.style.display="block";
+            P_correct.style.display = "none";
+        }
+    }
+    
+}
+</script>

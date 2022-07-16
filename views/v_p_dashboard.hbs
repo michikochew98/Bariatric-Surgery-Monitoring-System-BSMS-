@@ -1,0 +1,346 @@
+<!--
+<nav>
+<h4>Bariact</h4>
+<ul>
+<li><a href="/">Home</a></li>
+{{#if user}} 
+    <li><a href="/profile">Profile</a></li>
+    <li><a href="/auth/logout">Log Out</a></li>
+{{else}}
+    <li><a href="/login">Login</a></li>
+    <li><a href="/register">Register</a></li>
+{{/if}}
+</ul>
+</nav>
+-->
+
+
+{{#if user}} 
+<!--<nav>
+	<h4>Bariact</h4>
+	<ul>
+		<li><a href="/">Home</a></li>
+		<li><a href="/diet/view">Diet</a></li>
+		<li><a href="/profile">Profile</a></li>
+		<li><a href="/auth/logout">Log Out</a></li>
+	</ul>
+</nav>-->
+
+<nav>
+    <div class="logo-name">
+        <div class="logo-image">
+            <img src="/logo.png" alt="">
+        </div>
+
+        <span class="logo_name">BARIACT</span>
+    </div>
+
+    <div class="menu-items">
+        
+        <ul class="nav-links">
+            <li><a href="/dashboard">
+                <i class="uil uil-estate"></i>
+                <span class="link-name">Dashboard</span>
+            </a></li>
+            <li><a href="/calendar">
+                <i class="uil uil-calendar-alt"></i>
+                <span class="link-name">Calendar</span>
+            </a></li>
+            <li><a href="/diet/view">
+                <i class="uil uil-utensils"></i>
+                <span class="link-name">Diet</span>
+            </a></li>
+            <li><a href="/exercise/view">
+                <i class="uil uil-basketball"></i>
+                <span class="link-name">Exercise</span>
+            </a></li>
+            <li><a href="/analytics">
+                <i class="uil uil-chart"></i>
+                <span class="link-name">Analytics</span>
+            </a></li>
+            
+            <li><a href="/profile/display">
+                <i class="uil uil-user-circle"></i>
+                <span class="link-name">Profile</span>
+            </a></li>
+          
+        </ul>
+        
+        <ul class="logout-mode">
+     
+            <li><a href="/auth/logout">
+                <i class="uil uil-signout"></i>
+                <span class="link-name">Logout</span>
+            </a></li>
+            
+
+            <li class="mode">
+                <a href="#">
+                    <i class="uil uil-moon"></i>
+                <span class="link-name">Dark Mode</span>
+                </a>
+
+                <div class="mode-toggle">
+                    <span class="switch"></span>
+                </div>
+            </li>
+        </ul>        
+    </div>
+</nav>
+
+
+{{else}}
+<nav>
+    <div class="logo-name">
+    <div class="logo-image">
+        <img src="logo.png" alt="">
+    </div>
+
+    <span class="logo_name">BARIACT</span>
+    </div>
+
+    <div class="menu-items">
+
+    <ul class="nav-links">
+        <li><a href="/">
+            <i class="uil uil-estate"></i>
+            <span class="link-name">Home</span>
+        </a></li>
+        <li><a href="/login">
+            <i class="uil uil-signin"></i>
+            <span class="link-name">Login</span>
+        </a></li>
+
+        <li><a href="/register">
+            <i class="uil uil-file-info-alt"></i>
+            <span class="link-name">Register</span>
+        </a></li>
+    </ul>
+    </div>
+</nav>
+
+<section class="dashboard">
+    <div class="top">
+        <i class="uil uil-bars sidebar-toggle"></i>
+        <div class="menu-items">
+        <ul class="nav-links" style="float: right;display:inline-block;">
+            <li style="display:inline-block;padding-right:15px"><a href="#gifdisplay"><i class="uil uil-estate"></i><span class="link-name">Home </span></a></li>
+            <li style="display:inline-block;padding-right:15px"><a href="#about"><i class="uil uil-notes"></i><span class="link-name">About</span></a></li>
+            <li style="display:inline-block;padding-right:15px"><a href="#contact"><i class="uil uil-book"></i><span class="link-name">Contact</span></a></li>
+        </ul></div>
+    </div>
+    <div class="dash-content">
+        <div class="home">
+        <div id="gifdisplay" class="gifdisplay">
+            <div class="container mt-4">
+            <div class="jumbotron">
+                <h1 class="logo-name" style="font-size: 70px;">Bariatric<br>Surgery<br>Web</h1>
+                <!--<p class="lead">BARIACT aka Bariatric Surgery Monitoring System for Patients and Doctors in Universiti Sains Malaysia.</p>
+                <hr class="my-4">-->
+                <p>Log In or Register to know more! </p>
+                <p class="lead">
+                    <a class="btn btn-primary btn-lg" href="/login" role="button">Log In</a>
+                    <a class="btn btn-primary btn-lg" href="/register" role="button">Register</a>
+                </p>
+            </div>
+        </div></div>
+        </div>
+        
+         <div id="about" class="about">
+            <div class="container mt-4">
+            <div class="jumbotron">
+                <h1 class="logo-name" style="font-size: 70px;float:right"><u>About</u></h1>
+                <p class="lead" style="color: white; float:left"><br>BARIACT aka<br>Bariatric Surgery<br>Monitoring System<br>for Patients and Doctors<br>in Universiti Sains Malaysia.</p>
+                
+                
+            </div>
+        </div>
+         </div>
+        <div id="contact" class="contact">
+            <div class="container mt-4" style="background-color: #fff;">
+                <div class="jumbotron" style="border-radius: 50%;">
+                    <footer>
+                    <p><b></b></p> <p>Health Campus<br>Universiti Sains Malaysia,<br>16150 Kubang Kerian,<br>Kelantan. Malaysia.<br></p> 
+                    <div class="social">
+                        <!--<span><a href="https://ppsk.usm.my/"><i class="uil uil-link-h"></i> School of Health Sciences</a></span><br>-->
+                        <span><a href="http://www.usm.my/"><i class="uil uil-browser"></i>  Universiti Sains Malaysia</a></span><br>
+                    </div>
+                    <br><!--<br><p class="end">&#169 CopyRight By ---- </p> </footer>-->
+                </div>
+             </div>
+        
+        </div>
+    </div>
+</section>
+
+
+{{/if}}
+
+{{#if user}} 
+<section class="dashboard">
+    <div class="top">
+        <i class="uil uil-bars sidebar-toggle"></i>
+         <h6 style="float: right;">
+           {{#if user}}
+                {{#if user.image}}
+                    <img src="/images/{{user.image}}" class="pp" id="pp" style="height: 30px; width:30px; object-fit: cover; overflow:hidden"/>
+                {{else}}
+                    <img src="/images/profileimage.png"  class="pp" id="pp" style="height: 30px; width:30px; object-fit: cover; overflow:hidden"/>
+                {{/if}}
+                {{user.role}}, {{user.fullname}}, {{user.email}}, {{user.ic}}
+            {{/if}}
+            
+            
+            {{#each getuser}}
+                 {{#if this.image}}
+                    <img src="/images/{{this.image}}" class="pp" id="pp" style="height: 30px; width:30px; object-fit: cover; overflow:hidden"/>
+                {{else}}
+                    <img src="/images/profileimage.png"  class="pp" id="pp" style="height: 30px; width:30px; object-fit: cover; overflow:hidden"/>
+                {{/if}}
+                {{this.role}}, {{this.fullname}}, {{this.email}}, {{this.ic}}
+            {{/each}}
+            
+             {{#if assignedTo}}
+                Assigned to {{assignedTo}}</h6>
+            {{/if}}
+    </div>
+    <div class="dash-content">
+        <div class="overview">
+            <div class="title">
+                <i class="uil uil-estate"></i>
+                <span class="text">Dashboard</span>
+            </div>
+
+            <div class="boxes">
+               
+                <div class="box box2">
+                    <i class="uil uil-user-circle"></i>
+                    <span class="text">Assigned Doctor :</span>
+                     {{#if assignedTo}}
+                    <span class="text">{{{assignedTo}}}</span>
+                    {{/if}}
+                </div>
+              
+            </div>
+        </div>
+
+        <div class="activity">
+              
+            
+        <form class="contact-form">
+            <input type="text" class = "name" id = "name" name = "name" value = "{{{user.fullname}}}" placeholder = "Enter Name" hidden> 
+            <input type = "email" class = "email"  id = "email" name = "email" value = "{{{user.email}}}" placeholder = "Enter Email" hidden>
+           
+        </form>
+       
+            <div class="title">
+                <i class="uil uil-clock-three"></i>
+                <span class="text">Doctor's Details</span>
+            </div>
+
+            <div class="activity-data">
+                <div class="data names">
+                    <span class="data-title">Name</span>
+                    
+                    {{#each result}}
+                    <span class="data-list"><a href="/dashboard/{{this.ic}}">{{this.fullname}}   <i class="bi bi-eye-fill"></i></a></span>
+                    {{/each}}
+                </div>
+                <div class="data email">
+                    <span class="data-title">Email</span>
+                    
+                    {{#each result}}
+                    <span class="data-list">{{this.email}}</span>
+                    {{/each}}
+                </div>
+                <div class="data joined">
+                    <span class="data-title">Phone Number</span>
+                    
+                    {{#each rows}}
+                    <span class="data-list">{{this.phone_number}}</span>
+                    {{/each}}
+                </div>
+                <!--
+                <div class="data status">
+                    <span class="data-title">Status</span>
+                    <span class="data-list">Liked</span>
+                    <span class="data-list">Liked</span>
+                    <span class="data-list">Liked</span>
+                    <span class="data-list">Liked</span>
+                    <span class="data-list">Liked</span>
+                    <span class="data-list">Liked</span>
+                    <span class="data-list">Liked</span>
+                </div>-->
+            </div>
+        </div>
+        
+        <!--<canvas id="myfirstChart" style="width:100%;max-width:700px"></canvas>
+        <script>
+            var xValues = [100,200,300,400,500,600,700,800,900,1000];
+
+            new Chart("myfirstChart", {
+            type: "line",
+            data: {
+                labels: xValues,
+                datasets: [{ 
+                data: [860,1140,1060,1060,1070,1110,1330,2210,7830,2478],
+                borderColor: "red",
+                fill: false
+                }, { 
+                data: [1600,1700,1700,1900,2000,2700,4000,5000,6000,7000],
+                borderColor: "green",
+                fill: false
+                }, { 
+                data: [300,700,2000,5000,6000,4000,2000,1000,200,100],
+                borderColor: "blue",
+                fill: false
+                }]
+            },
+            options: {
+                legend: {display: false}
+            }
+            });
+        </script>-->
+        
+        
+        <!--<canvas id="myChart" width="200" height="200"></canvas>
+        <script>
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                datasets: [{
+                    label: '# of Votes',
+                    data: [12, 19, 3, 5, 2, 3],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+        </script> -->
+    </div>
+</section>
+{{/if}}

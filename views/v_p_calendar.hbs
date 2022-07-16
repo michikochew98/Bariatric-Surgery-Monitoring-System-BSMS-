@@ -1,0 +1,736 @@
+<!--<nav>
+	<h4>Bariact</h4>
+	<ul>
+		<li><a href="/">Home</a></li>
+		<li><a href="/diet/view">Diet</a></li>
+		<li><a href="/profile">Profile</a></li>
+		<li><a href="/auth/logout">Log Out</a></li>
+	</ul>
+</nav>-->
+<link rel="stylesheet" href="css/style.css">
+
+<nav>
+    <div class="logo-name">
+        <div class="logo-image">
+            <img src="/logo.png" alt="">
+        </div>
+
+        <span class="logo_name">BARIACT</span>
+    </div>
+
+    <div class="menu-items">
+        
+        <ul class="nav-links">
+            <li><a href="/dashboard">
+                <i class="uil uil-estate"></i>
+                <span class="link-name">Dashboard</span>
+            </a></li>
+            <li><a href="/calendar">
+                <i class="uil uil-calendar-alt"></i>
+                <span class="link-name">Calendar</span>
+            </a></li>
+            <li><a href="/diet/view">
+                <i class="uil uil-utensils"></i>
+                <span class="link-name">Diet</span>
+            </a></li>
+            <li><a href="/exercise/view">
+                <i class="uil uil-basketball"></i>
+                <span class="link-name">Exercise</span>
+            </a></li>
+            <li><a href="/analytics">
+                <i class="uil uil-chart"></i>
+                <span class="link-name">Analytics</span>
+            </a></li>
+            
+            <li><a href="/profile/display">
+                <i class="uil uil-user-circle"></i>
+                <span class="link-name">Profile</span>
+            </a></li>
+          
+        </ul>
+        
+        <ul class="logout-mode">
+     
+            <li><a href="/auth/logout">
+                <i class="uil uil-signout"></i>
+                <span class="link-name">Logout</span>
+            </a></li>
+            
+
+            <li class="mode">
+                <a href="#">
+                    <i class="uil uil-moon"></i>
+                <span class="link-name">Dark Mode</span>
+                </a>
+
+                <div class="mode-toggle">
+                    <span class="switch"></span>
+                </div>
+            </li>
+        </ul>        
+    </div>
+</nav>
+
+
+
+<section class="dashboard">
+	
+    <div class="top">
+        <i class="uil uil-bars sidebar-toggle"></i>
+        <h6 style="float: right;">
+            {{#if user}}
+                {{#if user.image}}
+                    <img src="/images/{{user.image}}" class="pp" id="pp" style="height: 30px; width:30px; object-fit: cover; overflow:hidden"/>
+                {{else}}
+                    <img src="/images/profileimage.png"  class="pp" id="pp" style="height: 30px; width:30px; object-fit: cover; overflow:hidden"/>
+                {{/if}}
+                {{user.role}}, {{user.fullname}}, {{user.email}}, {{user.ic}}
+            {{/if}}
+            
+            
+            {{#each getuser}}
+                 {{#if this.image}}
+                    <img src="/images/{{this.image}}" class="pp" id="pp" style="height: 30px; width:30px; object-fit: cover; overflow:hidden"/>
+                {{else}}
+                    <img src="/images/profileimage.png"  class="pp" id="pp" style="height: 30px; width:30px; object-fit: cover; overflow:hidden"/>
+                {{/if}}
+                {{this.role}}, {{this.fullname}}, {{this.email}}, {{this.ic}}
+            {{/each}}
+            
+             {{#if assignedTo}}
+                Assigned to {{assignedTo}}</h6>
+            {{/if}}
+    </div>
+	
+    <div class="dash-content">
+        
+		<div class="overview">
+            <div class="title">
+                <i class="uil uil-calendar-alt"></i>
+                <span class="text">Calendar</span>
+            </div>
+            
+                <div class="activity">
+                     <div class="boxes" style="padding-top: 5px;">
+                    <div class="box box1">
+                        <i class="uil uil-schedule"></i>
+                        <span class="text">Today's Date</span>
+                        <span class="number">{{#if todayDate}}{{todayDate}}{{/if}}</span>
+                    </div>
+                    <div class="box box2">
+                        <i class="uil uil-utensils"></i>
+                        <span class="text">Total Diet Logged</span>
+                        <span class="number">3</span>
+                    </div>
+                    
+                    <div class="box box3">
+                        <i class="uil uil-basketball"></i>
+                        <span class="text">Total Exercise Logged</span>
+                        <span class="number">2</span>
+                    </div>
+                </div>
+                
+                    <div class="row justify-content-center">
+                        <div class="col-md-6 text-center mb-5">   
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12" style="width: 100%;">
+                            <div class="elegant-calencar d-md-flex">
+                                <div class="wrap-header d-flex align-items-center img" style="background-image: url(images/sleeve-animation.gif); background-size:410px">
+                                    <p id="reset">Today</p>
+                                    <div id="header" class="p-0">
+                                        <!--<div class="pre-button d-flex align-items-center justify-content-center"><i class="fa fa-chevron-left"></i></div> -->
+                                        <div class="head-info">
+                                            <div class="head-month"></div>
+                                            <div class="head-day"></div>
+                                        </div>
+                                        <!--<div class="next-button d-flex align-items-center justify-content-center"><i class="fa fa-chevron-right"></i></div> -->
+                                    </div>
+                                </div>
+                                <div class="calendar-wrap">
+                                    <div class="w-100 button-wrap">
+                                        <div class="pre-button d-flex align-items-center justify-content-center"><i class="fa fa-chevron-left"></i></div>
+                                        <div class="next-button d-flex align-items-center justify-content-center"><i class="fa fa-chevron-right"></i></div>
+                                    </div><br><br>
+                                    <table  style="width:100%;text-align: center"  class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Sun</th>
+                                                <th>Mon</th>
+                                                <th>Tue</th>
+                                                <th>Wed</th>
+                                                <th>Thu</th>
+                                                <th>Fri</th>
+                                                <th>Sat</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="boxes" style="padding-top: 5px;justify-content:center;width:100%">
+                    <div class="box box3">  
+                        <span class="text">Selected Date</span>
+                        <div id="displayselect"></div>
+                    </div>
+                    
+                    <div class="card" style="width: 100%;justify-content:center;">
+                        <div class="card-body">
+                            <h5 class="card-title">Total Calories Intake <i class="uil uil-utensils"></i></h5>
+                            <div id="date1">Date 1</div>
+                            <p class="card-text"><div id="calories1">Cal 1</div></p>
+                        </div> 
+                    </div>
+                        <div class="card" style="width: 100%;justify-content:center;">
+                            <div class="card-body">
+                                <h5 class="card-title">Total Calories Burned <i class="uil uil-basketball"></i></h5>
+                                <div id="date2">Date 2</div>
+                                <p class="card-text"><div id="calories2">Cal 2</div></p>
+                            </div> 
+                        </div>
+                </div>
+                
+            
+            <!--{{#if send}}
+                <br><br><br>
+                {{{send}}}
+            {{/if}}-->
+		</div>
+	</div>
+
+</section>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+<script>
+    
+    $(document).ready(function() {
+        
+        
+        var datep = new Date(Date.now());
+        var nowdate = datep.getDate() + "/" + (datep.getMonth()+1) + "/" + datep.getFullYear(); 
+        document.getElementById("displayselect").innerHTML = nowdate;
+        
+        //diet
+        var labels = [], c = [];
+        var typeofmeal, calofmeal;
+        var sdate, getsdate;
+        {{#each rows}}
+        
+            typeofmeal = "{{{this.time}}}"; //get all createdAt 
+            sdate = new Date(typeofmeal); //assign ad Date format
+            
+            if((datep.getDate() === sdate.getDate()) && (datep.getMonth() === sdate.getMonth()) && (datep.getFullYear() === sdate.getFullYear())){ //check whether month&year from user input match with data from database
+                
+                getsdate = sdate.getDate() + "/" + (sdate.getMonth()+1) + "/" + sdate.getFullYear(); 
+                document.getElementById("date1").innerHTML = "Selected Date: " + getsdate;
+                //document.write("getsdate: "+getsdate);
+                
+                //labels.push(getsdate);
+                //c.push(calofmeal);
+                
+                calofmeal = "{{{this.calories}}}";
+                calofmeal = parseInt(calofmeal);
+            
+                //document.write(labels.length+ "<br>");
+                //document.write(c.length+ "<br>");
+                //document.write("Calories 1" + {{{this.calories}}}+ "<br>");
+                //document.write("Calories 2" + calofmeal+ "<br>");
+                // document.write("Year : " + sdate.getFullYear() + "<br>");
+                //document.write("Month : " + (sdate.getMonth()+1) + "<br>");
+                //document.write("Day : " + sdate.getDate() + "<br>");
+                //document.write("Time : " + sdate.getHours() + "<br>");
+                //document.write("Minute : " + sdate.getMinutes() + "<br>");
+                
+                if(labels.includes(getsdate)){
+                    
+                    for (let i = 0; i < labels.length; i++) {
+                        if (labels[i] == getsdate) {
+                            c[i] = c[i] + calofmeal;
+                            console.log(c[i]);
+                            break;
+                        }
+                    }
+                    
+                }else{
+                    c.push(calofmeal);
+                    labels.push(getsdate);
+                }
+                
+                //document.getElementById('myChart').style.display = "block";
+            }
+            else{
+                //document.getElementById('myChart').style.display = "block";
+                document.getElementById("calories1").innerHTML = "<strong>No Data Recorded on " + datep.getDate() + " " + datep.toLocaleString('default', { month: 'long' }) + " " + datep.getFullYear() + "</strong>";
+            }
+                
+        {{/each}}
+        
+        //document.write("Type of meal : ["+ labels + "]<br>");
+        //document.write("Cal of meal : ["+ c + "]<br>");
+    
+        var displaydate1 = "", displaycalories1 = "";
+        
+        for(var i = 0 ; i < (labels.length); i++ ){
+            displaydate1 = displaydate1  + labels[i] + "<br>";
+            displaycalories1 = displaycalories1 + c[i] + "<br>";
+        }
+        
+        document.getElementById("date1").innerHTML = "Selected Date: " + displaydate1;
+        document.getElementById("calories1").innerHTML = "Total Calories Intake (kcal): " + displaycalories1;
+        
+        
+        //exercise
+        
+         var labels = [], c = [];
+        var typeofmeal, calofmeal;
+        var sdate, getsdate;
+        {{#each result}}
+        
+            typeofmeal = "{{{this.time}}}"; //get all createdAt 
+            sdate = new Date(typeofmeal); //assign ad Date format
+            
+            if((datep.getDate() === sdate.getDate()) && (datep.getMonth() === sdate.getMonth()) && (datep.getFullYear() === sdate.getFullYear())){ //check whether month&year from user input match with data from database
+                
+                getsdate = sdate.getDate() + "/" + (sdate.getMonth()+1) + "/" + sdate.getFullYear(); 
+                document.getElementById("date2").innerHTML = "Selected Date: " + getsdate;
+                
+                //labels.push(getsdate);
+                //c.push(calofmeal);
+                
+                calofmeal = "{{{this.calories_burn}}}";
+                calofmeal = parseInt(calofmeal);
+                
+            
+                if(labels.includes(getsdate)){
+                    
+                    for (let i = 0; i < labels.length; i++) {
+                        if (labels[i] == getsdate) {
+                            c[i] = c[i] + calofmeal;
+                            console.log(c[i]);
+                            break;
+                        }
+                    }
+                    
+                }else{
+                    c.push(calofmeal);
+                    labels.push(getsdate);
+                }
+                
+                //document.getElementById('mySecChart').style.display = "block";
+            }
+            else{
+                //document.getElementById('mySecChart').style.display = "none";
+                document.getElementById("calories2").innerHTML = "<strong>No Data Recorded on " + datep.getDate() + " " + datep.toLocaleString('default', { month: 'long' }) + " " + datep.getFullYear() + "</strong>";
+            }
+                
+        {{/each}}
+        
+        //document.write("Type of meal : ["+ labels + "]<br>");
+        //document.write("Cal of meal : ["+ c + "]<br>");
+    
+        var displaydate2 = "", displaycalories2 = "";
+        
+        for(var i = 0 ; i < (labels.length); i++ ){
+            displaydate2 = displaydate2  + labels[i] + "<br>";
+            displaycalories2 = displaycalories2 + c[i] + "<br>";
+        }
+        
+        document.getElementById("date2").innerHTML = "Selected Date: " + displaydate2;
+        document.getElementById("calories2").innerHTML = "Total Calories Burned (kcal): " + displaycalories2;
+        
+    });
+    
+    function displayDate(year,month,date){
+        console.log(typeof month);
+        console.log(typeof year);
+        console.log(typeof date);
+        console.log(month+1);
+        var newmonth = month+1;
+        var newdate = parseInt(date);
+        console.log(typeof newdate);
+        var selectedDate = date + "/" + newmonth + "/" + year;
+        document.getElementById("displayselect").innerHTML = selectedDate;
+        displayCalories(year,month,newdate);
+        displayExercise(year,month,newdate);
+    }
+    
+    function displayExercise(year,month,newdate){
+        
+        var labels = [], c = [];
+        var typeofmeal, calofmeal;
+        var sdate, getsdate;
+        {{#each result}}
+        
+            typeofmeal = "{{{this.time}}}"; //get all createdAt 
+            sdate = new Date(typeofmeal); //assign ad Date format
+            
+            if((newdate === sdate.getDate()) && (month === sdate.getMonth()) && (year === sdate.getFullYear())){ //check whether month&year from user input match with data from database
+                getsdate = sdate.getDate() + "/" + (sdate.getMonth()+1) + "/" + sdate.getFullYear(); 
+                document.getElementById("date2").innerHTML = "Selected Date: " + getsdate;
+                
+                //labels.push(getsdate);
+                //c.push(calofmeal);
+                
+                calofmeal = "{{{this.calories_burn}}}";
+                calofmeal = parseInt(calofmeal);
+            
+            
+                if(labels.includes(getsdate)){
+                    
+                    for (let i = 0; i < labels.length; i++) {
+                        if (labels[i] == getsdate) {
+                            c[i] = c[i] + calofmeal;
+                            console.log(c[i]);
+                            break;
+                        }
+                    }
+                    
+                }else{
+                    c.push(calofmeal);
+                    labels.push(getsdate);
+                }
+                
+                //document.getElementById('mySecChart').style.display = "block";
+            }
+            else{
+                //document.getElementById('mySecChart').style.display = "none";
+                document.getElementById("calories2").innerHTML = "<strong>No Data Recorded on " + newdate + " " + sdate.toLocaleString('default', { month: 'long' }) + " " + sdate.getFullYear() + "</strong>";
+            }
+                
+        {{/each}}
+        
+        //document.write("Type of meal : ["+ labels + "]<br>");
+        //document.write("Cal of meal : ["+ c + "]<br>");
+    
+        var displaydate2 = "", displaycalories2 = "";
+        
+        for(var i = 0 ; i < (labels.length); i++ ){
+            displaydate2 = displaydate2  + labels[i] + "<br>";
+            displaycalories2 = displaycalories2 + c[i] + "<br>";
+        }
+        
+        document.getElementById("date2").innerHTML = "Selected Date: " + displaydate2;
+        document.getElementById("calories2").innerHTML = "Total Calories Burned (kcal): " + displaycalories2;
+        
+    }
+    
+    function displayCalories(year,month,newdate){
+      
+        var labels = [], c = [];
+        var typeofmeal, calofmeal;
+        var sdate, getsdate;
+        {{#each rows}}
+        
+            typeofmeal = "{{{this.time}}}"; //get all createdAt 
+            sdate = new Date(typeofmeal); //assign ad Date format
+            
+            if((newdate === sdate.getDate()) && (month === sdate.getMonth()) && (year === sdate.getFullYear())){ //check whether month&year from user input match with data from database
+                
+                getsdate = sdate.getDate() + "/" + (sdate.getMonth()+1) + "/" + sdate.getFullYear(); 
+                document.getElementById("date1").innerHTML = "Selected Date: " + getsdate;
+                //labels.push(getsdate);
+                //c.push(calofmeal);
+                
+                calofmeal = "{{{this.calories}}}";
+                calofmeal = parseInt(calofmeal);
+                
+            
+                //document.write(labels.length+ "<br>");
+                //document.write(c.length+ "<br>");
+                //document.write("Calories 1" + {{{this.calories}}}+ "<br>");
+                //document.write("Calories 2" + calofmeal+ "<br>");
+                // document.write("Year : " + sdate.getFullYear() + "<br>");
+                //document.write("Month : " + (sdate.getMonth()+1) + "<br>");
+                //document.write("Day : " + sdate.getDate() + "<br>");
+                //document.write("Time : " + sdate.getHours() + "<br>");
+                //document.write("Minute : " + sdate.getMinutes() + "<br>");
+                
+                if(labels.includes(getsdate)){
+                    
+                    for (let i = 0; i < labels.length; i++) {
+                        if (labels[i] == getsdate) {
+                            c[i] = c[i] + calofmeal;
+                            console.log(c[i]);
+                            break;
+                        }
+                    }
+                    
+                }else{
+                    c.push(calofmeal);
+                    labels.push(getsdate);
+                }
+                
+                //document.getElementById('myChart').style.display = "block";
+            }
+            else{
+                //document.getElementById('myChart').style.display = "block";
+                document.getElementById("calories1").innerHTML = "<strong>No Data Recorded on " + newdate + " " + sdate.toLocaleString('default', { month: 'long' }) + " " + sdate.getFullYear() + "</strong>";
+            }
+                
+        {{/each}}
+        
+        //document.write("Type of meal : ["+ labels + "]<br>");
+        //document.write("Cal of meal : ["+ c + "]<br>");
+    
+        var displaydate1 = "", displaycalories1 = "";
+        
+        for(var i = 0 ; i < (labels.length); i++ ){
+            displaydate1 = displaydate1  + labels[i] + "<br>";
+            displaycalories1 = displaycalories1 + c[i] + "<br>";
+        }
+        
+        document.getElementById("date1").innerHTML = "Selected Date: " + displaydate1;
+        document.getElementById("calories1").innerHTML = "Total Calories Intake (kcal): " + displaycalories1;
+        
+    }
+    
+    (function($) {
+
+        "use strict";
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var today = new Date(),
+                year = today.getFullYear(),
+                month = today.getMonth(),
+                monthTag = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+                day = today.getDate(),
+                days = document.getElementsByTagName('td'),
+                selectedDay,
+                setDate,
+                daysLen = days.length;
+            // options should like '2014-01-01'
+            function Calendar(selector, options) {
+                this.options = options;
+                this.draw();
+            }
+
+            Calendar.prototype.draw = function() {
+                this.getCookie('selected_day');
+                this.getOptions();
+                this.drawDays();
+                var that = this,
+                    reset = document.getElementById('reset'),
+                    pre = document.getElementsByClassName('pre-button'),
+                    next = document.getElementsByClassName('next-button');
+
+                pre[0].addEventListener('click', function() {
+                    that.preMonth();
+                });
+                next[0].addEventListener('click', function() {
+                    that.nextMonth();
+                });
+                reset.addEventListener('click', function() {
+                    that.reset();
+                });
+                while (daysLen--) {
+                    days[daysLen].addEventListener('click', function() {
+                        that.clickDay(this);
+                    });
+                }
+            };
+
+            Calendar.prototype.drawHeader = function(e) {
+                var headDay = document.getElementsByClassName('head-day'),
+                    headMonth = document.getElementsByClassName('head-month');
+
+                e ? headDay[0].innerHTML = e : headDay[0].innerHTML = day;
+                headMonth[0].innerHTML = monthTag[month] + " - " + year;
+            };
+
+            Calendar.prototype.drawDays = function() {
+                var startDay = new Date(year, month, 1).getDay(),
+                    nDays = new Date(year, month + 1, 0).getDate(),
+
+                    n = startDay;
+                for (var k = 0; k < 42; k++) {
+                    days[k].innerHTML = '';
+                    days[k].id = '';
+                    days[k].className = '';
+                }
+
+                for (var i = 1; i <= nDays; i++) {
+                    days[n].innerHTML = i;
+                    n++;
+                }
+
+                for (var j = 0; j < 42; j++) {
+                    if (days[j].innerHTML === "") {
+
+                        days[j].id = "disabled";
+
+                    } else if (j === day + startDay - 1) {
+                        if ((this.options && (month === setDate.getMonth()) && (year === setDate.getFullYear())) || (!this.options && (month === today.getMonth()) && (year === today.getFullYear()))) {
+                            this.drawHeader(day);
+                            days[j].id = "today";
+                        }
+                    }
+                    if (selectedDay) {
+                        if ((j === selectedDay.getDate() + startDay - 1) && (month === selectedDay.getMonth()) && (year === selectedDay.getFullYear())) {
+                            days[j].className = "selected";
+                            this.drawHeader(selectedDay.getDate());
+                        }
+                    }
+                }
+            };
+
+            Calendar.prototype.clickDay = function(o) {
+                var selected = document.getElementsByClassName("selected"),
+                    len = selected.length;
+                if (len !== 0) {
+                    selected[0].className = "";
+                }
+                o.className = "selected";
+                selectedDay = new Date(year, month, o.innerHTML);
+                this.drawHeader(o.innerHTML);
+                this.setCookie('selected_day', 1);
+                console.log('You select year', year);
+                console.log('You select month', month);
+                console.log('You select date', o.innerHTML);
+                displayDate(year,month,o.innerHTML);
+
+            };
+
+            Calendar.prototype.preMonth = function() {
+                if (month < 1) {
+                    month = 11;
+                    year = year - 1;
+                } else {
+                    month = month - 1;
+                }
+                this.drawHeader(1);
+                this.drawDays();
+            };
+
+            Calendar.prototype.nextMonth = function() {
+                if (month >= 11) {
+                    month = 0;
+                    year = year + 1;
+                } else {
+                    month = month + 1;
+                }
+                this.drawHeader(1);
+                this.drawDays();
+            };
+
+            Calendar.prototype.getOptions = function() {
+                if (this.options) {
+                    var sets = this.options.split('-');
+                    setDate = new Date(sets[0], sets[1] - 1, sets[2]);
+                    day = setDate.getDate();
+                    year = setDate.getFullYear();
+                    month = setDate.getMonth();
+                }
+            };
+
+            Calendar.prototype.reset = function() {
+                month = today.getMonth();
+                year = today.getFullYear();
+                day = today.getDate();
+                this.options = undefined;
+                this.drawDays();
+            };
+
+            Calendar.prototype.setCookie = function(name, expiredays) {
+                if (expiredays) {
+                    var date = new Date();
+                    date.setTime(date.getTime() + (expiredays * 24 * 60 * 60 * 1000));
+                    var expires = "; expires=" + date.toGMTString();
+                } else {
+                    var expires = "";
+                }
+                document.cookie = name + "=" + selectedDay + expires + "; path=/";
+            };
+
+            Calendar.prototype.getCookie = function(name) {
+                if (document.cookie.length) {
+                    var arrCookie = document.cookie.split(';'),
+                        nameEQ = name + "=";
+                    for (var i = 0, cLen = arrCookie.length; i < cLen; i++) {
+                        var c = arrCookie[i];
+                        while (c.charAt(0) == ' ') {
+                            c = c.substring(1, c.length);
+
+                        }
+                        if (c.indexOf(nameEQ) === 0) {
+                            selectedDay = new Date(c.substring(nameEQ.length, c.length));
+                        }
+                    }
+                }
+            };
+            var calendar = new Calendar();
+
+        }, false);
+
+    })(jQuery);
+    
+    
+</script>
+
+
+
+
+
+
+

@@ -1,0 +1,161 @@
+<!--<nav>
+	<h4>Bariact</h4>
+	<ul>
+		<li><a href="/">Home</a></li>
+		<li><a href="/diet/view">Diet</a></li>
+		<li><a href="/profile">Profile</a></li>
+		<li><a href="/auth/logout">Log Out</a></li>
+	</ul>
+</nav>-->
+<nav>
+    <div class="logo-name">
+        <div class="logo-image">
+            <img src="/logo.png" alt="">
+        </div>
+
+        <span class="logo_name">BARIACT</span>
+    </div>
+	
+    <div class="menu-items">
+        <ul class="nav-links">
+            <li><a href="/admin/healthcare">
+                <i class="uil uil-hospital"></i>
+                <span class="link-name">Healthcare</span>
+            </a></li>
+			<li><a href="/admin/patientlist">
+                <i class="uil uil-clinic-medical"></i>
+                <span class="link-name">Patient List</span>
+            </a></li>
+			<li><a href="/admin/doctorlist">
+                <i class="uil uil-user-md"></i>
+                <span class="link-name">Doctor List</span>
+            </a></li>
+        </ul>
+        
+        <ul class="logout-mode">
+     
+            <li><a href="/auth/logout">
+                <i class="uil uil-signout"></i>
+                <span class="link-name">Logout</span>
+            </a></li>
+            
+
+            <li class="mode">
+                <a href="#">
+                    <i class="uil uil-moon"></i>
+                <span class="link-name">Dark Mode</span>
+				</a>
+
+				<div class="mode-toggle">
+					<span class="switch"></span>
+				</div>
+			</li>
+        </ul>        
+    </div>
+</nav>
+
+
+<section class="dashboard">
+    <div class="top">
+        <i class="uil uil-bars sidebar-toggle"></i>
+		 <h6>{{user.role}}, {{user.fullname}}, {{user.email}}, {{user.ic}}</h6>
+    </div>
+    <div class="dash-content">
+		<div class="overview">
+			
+			<div class="title">
+                <i class="uil uil-hospital"></i>
+                <span class="text">Healthcare Provider List</span>
+            </div>
+			
+			<!-- Healthcare Main View-->
+			{{#if removedHealthcare}}
+			<div class="container" style="background-color: #ffffff;">
+				<div class="alert alert-success alert-dismissible fade show" role="alert">
+					<strong>Success! </strong>{{removedHealthcare}}
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+			</div>
+			{{/if}}
+
+			{{#if alert}}
+
+			<br><br>
+			<ol class="breadcrumb" style="background-color: #ffffff;">
+				<li class="breadcrumb-item"><a href="/admin/healthcare">Back to Healthcare</a></li>
+				<li class="breadcrumb-item active" aria-current="page">Search Your Healthcare Provider Name</li>
+			</ol>
+			<br>
+
+			<div class="container" style="background-color: #ffffff;">
+				<div class="alert alert-success alert-dismissible fade show" role="alert">
+					<strong>Success! </strong>{{alert}}
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+			</div>
+			{{/if}}
+			
+			<div class="activity">
+				
+				<!--button for ADD -->
+				<div class="d-flex justify-content-end">
+					<div class="dropdown">
+					<button class="btn btn-primary dropdown-toggle align-self-center" type="button" id="dropdownMenu2" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						+ Add Healthcare
+					</button>
+					<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+						<a class="dropdown-item" href="/admin/healthcare/add">Enter Form</a>	
+					</div>
+					</div>
+				</div>
+				
+				<br>
+				
+				<!--button for SEARCH -->
+				<div class="input-group mb-3">
+				<form class="input-group mb-3" method="POST" action="/admin/healthcare/search">
+					<input type="search" class="form-control" name="search" placeholder="Search Healthcare Provider" aria-label="Search">
+					<div class="input-group-append">
+						<span type="submit" class="input-group-text"><i class="bi bi-search"></i></span>
+					</div>
+				</form>
+				</div>
+				
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<!--<th scope="col">#</th>-->
+							<th scope="col" class="text-center">Healthcare Provider</th>
+							<th scope="col" class="text-center">Address</th>
+							<th scope="col" class="text-center">State</th>
+							<!--column for READ, EDIT, DELETE -->
+							<th scope="col" class="text-center">Update</th> 
+						</tr>
+					</thead>
+					
+					<tbody>
+						
+						{{#each rows}}
+						<tr>
+							<!--<th scope="row">{{{this.id}}}</th>-->
+							<td>{{{this.name}}}</td>
+							<td>{{{this.address}}}</td>
+							<td>{{{this.state}}}</td>
+							<td  class="text-center">
+								<a href="/admin/healthcare/display/{{this.id}}" type="button" class="btn btn-light btn-small"><i class="bi bi-eye-fill"></i></a>
+								<a href="/admin/healthcare/update/{{this.id}}" type="button" class="btn btn-light btn-small"><i class="bi bi-pen-fill"></i></a>
+								<a href="/admin/healthcare/{{this.id}}" type="button" class="btn btn-light btn-small"><i class="bi bi-trash-fill"></i></a>
+							</td>
+						</tr>
+						{{/each}}
+						
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+
+

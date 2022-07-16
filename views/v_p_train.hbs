@@ -1,0 +1,117 @@
+<!--<nav>
+	<h4>Bariact</h4>
+	<ul>
+		<li><a href="/">Home</a></li>
+		<li><a href="/diet/view">Diet</a></li>
+		<li><a href="/profile">Profile</a></li>
+		<li><a href="/auth/logout">Log Out</a></li>
+	</ul>
+</nav>-->
+
+
+<nav>
+    <div class="logo-name">
+        <div class="logo-image">
+            <img src="/logo.png" alt="">
+        </div>
+
+        <span class="logo_name">BARIACT</span>
+    </div>
+
+    <div class="menu-items">
+        
+        <ul class="nav-links">
+            <li><a href="/dashboard">
+                <i class="uil uil-estate"></i>
+                <span class="link-name">Dashboard</span>
+            </a></li>
+            <li><a href="/calendar">
+                <i class="uil uil-calendar-alt"></i>
+                <span class="link-name">Calendar</span>
+            </a></li>
+            <li><a href="/diet/view">
+                <i class="uil uil-utensils"></i>
+                <span class="link-name">Diet</span>
+            </a></li>
+            <li><a href="/exercise/view">
+                <i class="uil uil-basketball"></i>
+                <span class="link-name">Exercise</span>
+            </a></li>
+            <li><a href="/analytics">
+                <i class="uil uil-chart"></i>
+                <span class="link-name">Analytics</span>
+            </a></li>
+            
+            <li><a href="/profile/display">
+                <i class="uil uil-user-circle"></i>
+                <span class="link-name">Profile</span>
+            </a></li>
+          
+        </ul>
+        
+        <ul class="logout-mode">
+     
+            <li><a href="/auth/logout">
+                <i class="uil uil-signout"></i>
+                <span class="link-name">Logout</span>
+            </a></li>
+            
+
+            <li class="mode">
+                <a href="#">
+                    <i class="uil uil-moon"></i>
+                <span class="link-name">Dark Mode</span>
+                </a>
+
+                <div class="mode-toggle">
+                    <span class="switch"></span>
+                </div>
+            </li>
+        </ul>        
+    </div>
+</nav>
+
+
+
+<section class="dashboard">
+	
+    <div class="top">
+        <i class="uil uil-bars sidebar-toggle"></i>
+        <h6 style="float: right;">
+            {{#if user}}
+                {{#if user.image}}
+                    <img src="/images/{{user.image}}" class="pp" id="pp" style="height: 30px; width:30px; object-fit: cover; overflow:hidden"/>
+                {{else}}
+                    <img src="/images/profileimage.png"  class="pp" id="pp" style="height: 30px; width:30px; object-fit: cover; overflow:hidden"/>
+                {{/if}}
+                {{user.role}}, {{user.fullname}}, {{user.email}}, {{user.ic}}
+            {{/if}}
+            
+            
+            {{#each getuser}}
+                 {{#if this.image}}
+                    <img src="/images/{{this.image}}" class="pp" id="pp" style="height: 30px; width:30px; object-fit: cover; overflow:hidden"/>
+                {{else}}
+                    <img src="/images/profileimage.png"  class="pp" id="pp" style="height: 30px; width:30px; object-fit: cover; overflow:hidden"/>
+                {{/if}}
+                {{this.role}}, {{this.fullname}}, {{this.email}}, {{this.ic}}
+            {{/each}}
+            
+             {{#if assignedTo}}
+                Assigned to {{assignedTo}}</h6>
+            {{/if}}
+    </div>
+	
+    <div class="dash-content">
+		<div class="overview">
+            <div class="title">
+                <i class="uil uil-calendar-alt"></i>
+                <span class="text">Train Food Images</span>
+            </div>
+            
+		
+            <br><br>
+    
+		</div>
+	</div>
+</section>

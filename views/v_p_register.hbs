@@ -1,0 +1,316 @@
+<!--<nav>
+	<h4>Bariact</h4>
+	<ul>
+		<li><a href="/">Home</a></li>
+		<li><a href="/login">Login</a></li>
+		<li><a href="/register">Back to Register</a></li>
+	</ul>
+</nav>-->
+
+{{#if user}} 
+<nav>
+    <div class="logo-name">
+        <div class="logo-image">
+            <img src="logo.png" alt="">
+        </div>
+
+        <span class="logo_name">BARIACT</span>
+    </div>
+
+    <div class="menu-items">
+        
+        <ul class="nav-links">
+            <li><a href="/dashboard">
+                <i class="uil uil-estate"></i>
+                <span class="link-name">Dashboard</span>
+            </a></li>
+			<li><a href="/calendar">
+                <i class="uil uil-calendar-alt"></i>
+                <span class="link-name">Calendar</span>
+            </a></li>
+            <li><a href="/diet/view">
+                <i class="uil uil-utensils"></i>
+                <span class="link-name">Diet</span>
+            </a></li>
+            <li><a href="/exercise/view">
+                <i class="uil uil-basketball"></i>
+                <span class="link-name">Exercise</span>
+            </a></li>
+            <li><a href="/analytics">
+                <i class="uil uil-chart"></i>
+                <span class="link-name">Analytics</span>
+            </a></li>
+            
+            <li><a href="/profile/display">
+                <i class="uil uil-user-circle"></i>
+                <span class="link-name">Profile</span>
+            </a></li>
+          
+        </ul>
+        
+        <ul class="logout-mode">
+     
+            <li><a href="/auth/logout">
+                <i class="uil uil-signout"></i>
+                <span class="link-name">Logout</span>
+            </a></li>
+            
+
+            <li class="mode">
+                <a href="#">
+                    <i class="uil uil-moon"></i>
+                <span class="link-name">Dark Mode</span>
+            </a>
+
+            <div class="mode-toggle">
+                <span class="switch"></span>
+            </div>
+        </li>
+        </ul>        
+    </div>
+</nav>
+
+{{else}}
+<nav>
+    <div class="logo-name">
+        <div class="logo-image">
+            <img src="logo.png" alt="">
+        </div>
+
+        <span class="logo_name">BARIACT</span>
+    </div>
+
+    <div class="menu-items">
+		
+        <ul class="nav-links">
+			 <li><a href="/">
+                <i class="uil uil-estate"></i>
+                <span class="link-name">Home</span>
+        	</a></li>
+			<li><a href="/login">
+				<i class="uil uil-signin"></i>
+				<span class="link-name">Login</span>
+			</a></li>
+
+			<li><a href="/register">
+				<i class="uil uil-file-info-alt"></i>
+				<span class="link-name">Register</span>
+			</a></li>
+		</ul>
+	</div>
+</nav>
+{{/if}}
+
+
+
+<section class="dashboard">
+    <div class="top">
+        <i class="uil uil-bars sidebar-toggle"></i>
+		<h6 style="float: right;">
+            {{#if user.image}}
+                <img src="/images/{{user.image}}" class="pp" id="pp" style="height: 30px; width:30px; object-fit: cover; overflow:hidden"/>
+            {{else}}
+                <img src="/images/profileimage.png" class="pp" id="pp" style="height: 30px; width:30px; object-fit: cover; overflow:hidden"/>
+            {{/if}}
+            {{user.role}}, {{user.fullname}}, {{user.email}}, {{user.ic}}
+            {{#if assignedTo}}
+                Assigned to {{assignedTo}}
+            {{/if}}</h6>
+    </div>
+    <div class="dash-content">
+		<div class="overview">
+          
+          <div class="title">
+                <i class="uil uil-file-info-alt"></i>
+                <span class="text">BARIACT Update Patient Details</span>
+          </div>
+		  
+			<div class="activity">
+				<div class="card">
+					<div class="card-header">Update Patient Details Form {{ic}}</div>
+					<div class="card-body">
+						<form action="/auth/registerpatient" method="POST">
+						
+							<!--IC Input Field--> 
+							<div class="form-group" id="ic" name= "ic" style="padding: 5px; display:none;">
+								<label for="ic">Registered IC</label>
+								<input type="text" class="form-control" id="ic" name= "ic" value="{{#if ic}}{{ic}}{{/if}}" onload="inputIC({{#if ic}}{{ic}}{{/if}});">
+							</div>
+							
+							<!--Name Input Field--> 
+							<div class="form-group" style="padding: 5px;">
+								<label for="fullname">Fullname</label>
+								<input type="text" class="form-control" id="fullname" name= "fullname" placeholder="Enter Fullname" required>
+							</div>
+							
+							<!--Age Input Field--> 
+							<div class="form-group" id="age" name= "age">
+								<input type="hidden" class="form-control" id="age" name= "age" value="0">
+							</div>
+								
+							<!--Home Address Input Field--> 				
+							<div class="form-group" style="padding: 5px;">
+								<label for="home_address">Home address</label>
+								<input type="text" class="form-control" id="home_address" name="home_address" placeholder="Enter Home Address" required>
+							</div>
+						
+							<!--Phone Number Input Field--> 
+							<div class="form-group" style="padding: 5px;">
+								<label for="phone_number">Phone Number</label>
+								<input type="tel" class="form-control" id="phone_number" name="phone_number" placeholder="Eg: 0123456789" required>
+							</div>
+							
+							<!--Gender Input Field--> 
+							<div class="form-group" id="gender" name= "gender">
+								<input type="hidden" class="form-control" id="gender" name= "gender" value="unknown">
+							</div>
+							
+							<!--Marital Status Input Field--> 
+							<div class="form-group" style="padding: 5px; width:fit-content">
+								<label for="marital_status">Select Marital Status</label>
+								<select class="form-select"  id="marital_status" name="marital_status" aria-label="marital_status" required>
+									<option value="single" selected>Single</option>
+									<option value="married">Married</option>
+									<option value="divorce">Divorce</option>
+									<option value="separated">Separated</option>
+									<option value="widowed">Widowed</option>
+								</select>
+							</div>
+							
+							<!--Physical Activity Input Field--> 
+							<div class="form-group" style="padding: 5px; width:fit-content">
+								<label for="activity_level">Select Physical Activity Level</label>
+								<select class="form-select"  id="activity_level" name="activity_level" aria-label="activity_level" required>
+									<option value="sedentary" selected>Sedentary</option>
+									<option value="lightly">Lightly Active</option>
+									<option value="moderately">Moderately Active</option>
+									<option value="highly">Highly Active</option>
+									<option value="extremely">Extremely Active</option>
+								</select>
+							</div>
+							
+							<!--Height Input Field--> 
+							<div class="form-group" style="padding: 5px;">
+								<label for="height">Height</label>
+								<input type="number" class="form-control" id="height" name="height" placeholder="Enter Height(cm)" required>
+							</div>
+							
+							<!--Surgery Status Input Field--> 
+							<div class="form-group" style="padding: 5px; width:fit-content">
+								<label for="surgery_status">Select Surgery Status</label>
+								<select class="form-select"  id="surgery_status" name="surgery_status" aria-label="surgery_status" required>
+									<option value="post" selected>Post-Operation</option>
+									<option value="pre">Pre-Operation</option>
+								</select>
+							</div>
+							
+							<!--Current Weight Input Field--> 
+							<div class="form-group" style="padding: 5px;">
+								<label for="curr_weight">Current Weight</label>
+								<input type="number" class="form-control" id="curr_weight" name="curr_weight" placeholder="Enter Weight(kg)" required>
+							</div>
+							
+							<!--Weight Before Surgery Input Field--> 
+							<div class="form-group" id="before_surg_weight" name="before_surg_weight" style="padding: 5px;">
+								<label for="before_surg_weight" id="before_surg_weight" name="before_surg_weight">Weight Before Operation</label>
+								<input type="number" class="form-control" id="before_surg_weight" name="before_surg_weight" placeholder="Enter Weight(kg)" value="">
+							</div>
+							
+								<!--Date of Operation Input Field--> 
+							<div class="form-group" style="padding: 5px; width:fit-content">
+								<label for="surgery_date">Date of Operation</label>
+								<div class="input-group date" id="surgery_date" name="surgery_date" data-provide="datepicker">
+									<input type="date" class="form-control" id="surgery_date" name="surgery_date" required>
+									<div class="input-group-addon">
+										<span class="glyphicon glyphicon-th"></span>
+									</div>
+								</div>
+							</div>
+							
+							<div class="form-group" style="padding: 5px;">
+								<div class="btn-group">
+									<button type="submit" class="btn btn-primary" style="padding: 5px;">Register</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<script>
+
+window.addEventListener('load', function() {
+	console.log('All assets are loaded');
+	
+	var myIC = document.getElementById("ic");
+	var myGender = document.getElementById("gender");
+	var myAge = document.getElementById("age");
+
+	console.log("ic value: "+ myIC.value);
+	console.log(typeof myIC.value);
+});
+	
+	
+	//get gender
+	var ic_val = Number(myIC);
+	console.log("ic value"+ ic_val);
+	console.log(typeof ic_val);
+	
+	if ((ic_val%2) == 0) {
+		myGender.innerHTML.value = "Female"; //even
+		console.log("My Gender " + myGender.innerHTML.value);
+		
+	} else {
+		myGender.innerHTML.value = "Male"; //odd
+		console.log("My Gender " + myGender.innerHTML.value);
+	}
+	
+	//get age
+	let string_ic = String.toString(myIC);
+	var birthyear = null;
+	if(string_ic.charAt(0) == "0" || string_ic.charAt(0) == "1" || string_ic.charAt(0) == "2"  ){
+		const char0 = 2;
+		const char1 = 0;
+		
+		birthyear = '' + char0 + char1 + string_ic.charAt(0) + string_ic.charAt(1);
+		console.log("My birthyear 1" + birthyear);
+		console.log(typeof birthyear);
+	}else{
+		const char0 = 1;
+		const char1 = 9;
+		
+		birthyear = '' + char0 + char1 + string_ic.charAt(0) + string_ic.charAt(1);
+		console.log("My birthyear 2" + birthyear);
+		console.log(typeof birthyear);
+	}
+	
+	var curr_year = new Date().getFullYear();
+	console.log("Current Year" + curr_year);
+	
+	console.log(birthyear);
+	var final_age = curr_year - Number(birthyear);
+	console.log(typeof birthyear);
+	console.log("Final Age" + final_age);
+	myAge.innerHTML.value = final_age;
+
+
+//get age and gender based on IC
+function inputIC(ic){
+	
+	console.log(ic+"my ic");
+	console.log(typeof ic);
+	var myGender = document.getElementById("gender");
+	var myAge = document.getElementById("age");
+	
+	console.log(ic+" "+myGender.value+" "+myAge.value);
+	
+}
+
+
+	
+</script>
+
+

@@ -1,0 +1,150 @@
+<!--
+<nav>
+<h4>Bariact</h4>
+<ul>
+<li><a href="/">Home</a></li>
+{{#if user}} 
+    <li><a href="/profile">Profile</a></li>
+    <li><a href="/auth/logout">Log Out</a></li>
+{{else}}
+    <li><a href="/login">Login</a></li>
+    <li><a href="/register">Register</a></li>
+{{/if}}
+</ul>
+</nav>
+-->
+
+
+<nav>
+    <div class="logo-name">
+        <div class="logo-image">
+            <img src="/logo.png" alt="">
+        </div>
+
+        <span class="logo_name">BARIACT</span>
+    </div>
+
+    <div class="menu-items">
+
+      <ul class="nav-links">
+            <li><a href="/doctor/dashboard">
+                <i class="uil uil-estate"></i>
+                <span class="link-name">Dashboard</span>
+            </a></li>
+            <li><a href="/doctor/diet">
+                <i class="uil uil-utensils"></i>
+                <span class="link-name">Diet</span>
+            </a></li>
+            <li><a href="/doctor/exercise">
+                <i class="uil uil-basketball"></i>
+                <span class="link-name">Exercise</span>
+            </a></li>
+			<li><a href="/doctor/screening">
+                <i class="uil uil-clipboard-alt"></i>
+                <span class="link-name">Screening Form</span>
+            </a></li>   
+                <li><a href="/doctor/analytics">
+                <i class="uil uil-chart"></i>
+                <span class="link-name">Analytics</span>
+            </a></li>
+            
+            <li><a href="/doctor/profile">
+                <i class="uil uil-user-circle"></i>
+                <span class="link-name">Profile</span>
+            </a></li>
+          
+        </ul>
+
+        <ul class="logout-mode">
+
+            <li><a href="/auth/logout">
+                <i class="uil uil-signout"></i>
+                <span class="link-name">Logout</span>
+            </a></li>
+            
+
+            <li class="mode">
+                <a href="#">
+                    <i class="uil uil-moon"></i>
+                <span class="link-name">Dark Mode</span>
+                </a>
+
+                <div class="mode-toggle">
+                    <span class="switch"></span>
+                </div>
+            </li>
+        </ul>        
+    </div>
+</nav>
+
+<section class="dashboard">
+    <div class="top">
+        <i class="uil uil-bars sidebar-toggle"></i>
+           <h6 style="float: right;">
+           {{#if user}}
+                {{#if user.image}}
+                    <img src="/images/{{user.image}}" class="pp" id="pp" style="height: 30px; width:30px; object-fit: cover; overflow:hidden"/>
+                {{else}}
+                    <img src="/images/profileimage.png"  class="pp" id="pp" style="height: 30px; width:30px; object-fit: cover; overflow:hidden"/>
+                {{/if}}
+                {{user.role}}, {{user.fullname}}, {{user.email}}, {{user.ic}}
+            {{/if}}
+            
+            
+            {{#each getuser}}
+                 {{#if this.image}}
+                    <img src="/images/{{this.image}}" class="pp" id="pp" style="height: 30px; width:30px; object-fit: cover; overflow:hidden"/>
+                {{else}}
+                    <img src="/images/profileimage.png"  class="pp" id="pp" style="height: 30px; width:30px; object-fit: cover; overflow:hidden"/>
+                {{/if}}
+                {{this.role}}, {{this.fullname}}, {{this.email}}, {{this.ic}}
+            {{/each}}
+            
+            </h6>
+    </div>
+    <div class="dash-content">
+             
+        <div class="activity">
+            <div class="title">
+                <i class="uil uil-clock-three"></i>
+                <span class="text">Your Patients' Analytics</span>
+            </div>
+            
+			
+			{{#if alert}}
+                <br>
+				<ol class="breadcrumb" style="background-color: #ffffff;">
+					<li class="breadcrumb-item"><a href="/doctor/analytics">Back to Patient's Analytics</a></li>
+					<li class="breadcrumb-item"><a href="/doctor/analytics/{{#each row}}{{this.ic}}{{/each}}">Back to {{#each row}}{{this.fullname}}{{/each}}'s Analytics</a></li>
+					<li class="breadcrumb-item active" aria-current="page">Analytics Message Page</li>
+				</ol>
+                <br>
+                 
+                <div class="container" style="background-color: #ffffff;">
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Success! </strong>{{alert}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div>
+                
+            {{else}}
+            
+                {{#if message}}
+				<ol class="breadcrumb" style="background-color: #ffffff;">
+					<li class="breadcrumb-item"><a href="/doctor/analytics">Back to Patient's Analytics</a></li>
+					<li class="breadcrumb-item"><a href="/doctor/analytics/{{#each patient}}{{this.ic}}{{/each}}">Back to {{#each patient}}{{this.fullname}}{{/each}}'s Analytics</a></li>
+					<li class="breadcrumb-item active" aria-current="page">Analytics Message Page</li>
+				</ol>
+                <div class="container" style="background-color: #ffffff;">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Fail! </strong>{{message}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div>
+                {{/if}}
+			{{/if}}
+			
+        </div>
+    </div>
+</section>
+

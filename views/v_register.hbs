@@ -1,0 +1,384 @@
+<!--<nav>
+    <h4>Bariact</h4>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/login">Login</a></li>
+        <li><a href="/register">Register</a></li>
+    </ul>
+</nav>-->
+
+{{#if user}} 
+<nav>
+    <div class="logo-name">
+        <div class="logo-image">
+            <img src="/logo.png" alt="">
+        </div>
+
+        <span class="logo_name">BARIACT</span>
+    </div>
+
+    <div class="menu-items">
+        
+        <ul class="nav-links">
+            <li><a href="/">
+                <i class="uil uil-estate"></i>
+                <span class="link-name">Dashboard</span>
+            </a></li>
+            <li><a href="/calendar">
+                <i class="uil uil-calendar-alt"></i>
+                <span class="link-name">Calendar</span>
+            </a></li>
+            <li><a href="/diet/view">
+                <i class="uil uil-utensils"></i>
+                <span class="link-name">Diet</span>
+            </a></li>
+            <li><a href="/exercise/view">
+                <i class="uil uil-basketball"></i>
+                <span class="link-name">Exercise</span>
+            </a></li>
+            <li><a href="/screening/view">
+                <i class="uil uil-clipboard-alt"></i>
+                <span class="link-name">Screening Form</span>
+            </a></li>   
+                <li><a href="/analytics">
+                <i class="uil uil-chart"></i>
+                <span class="link-name">Analytics</span>
+            </a></li>
+            
+            <li><a href="/profile/display">
+                <i class="uil uil-user-circle"></i>
+                <span class="link-name">Profile</span>
+            </a></li>
+          
+        </ul>
+        
+        <ul class="logout-mode">
+     
+            <li><a href="/auth/logout">
+                <i class="uil uil-signout"></i>
+                <span class="link-name">Logout</span>
+            </a></li>
+            
+
+            <li class="mode">
+                <a href="#">
+                    <i class="uil uil-moon"></i>
+                <span class="link-name">Dark Mode</span>
+            </a>
+
+            <div class="mode-toggle">
+                <span class="switch"></span>
+            </div>
+        </li>
+        </ul>        
+    </div>
+</nav>
+
+{{else}}
+<nav>
+    <div class="logo-name">
+        <div class="logo-image">
+            <img src="/logo.png" alt="">
+        </div>
+
+        <span class="logo_name">BARIACT</span>
+    </div>
+
+    <div class="menu-items">
+		
+    <ul class="nav-links">
+      
+      <li><a href="/">
+              <i class="uil uil-estate"></i>
+              <span class="link-name">Home</span>
+      </a></li>
+			<li><a href="/login">
+				<i class="uil uil-signin"></i>
+				<span class="link-name">Login</span>
+			</a></li>
+
+			<li><a href="/register">
+				<i class="uil uil-file-info-alt"></i>
+				<span class="link-name">Register</span>
+			</a></li>
+		</ul>
+	</div>
+</nav>
+{{/if}}
+
+<section class="dashboard">
+      <div class="top">
+          <i class="uil uil-bars sidebar-toggle"></i>
+      </div>
+      <div class="dash-content">
+        <div class="overview">
+          
+          <div class="title">
+                <i class="uil uil-file-info-alt"></i>
+                <span class="text">BARIACT Registration Form</span>
+          </div>
+            
+            
+          {{#if message }}
+          <br>      
+          <div class="container" style="background-color: #ffffff;">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert" onload="setAlert()">
+              <strong>Failed! </strong>{{message}}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          </div>
+          {{/if}}
+
+          {{#if success }}
+          <br>    
+          <div class="container" style="background-color: #ffffff;">
+            <div class="alert alert-success alert-dismissible fade show" role="alert" onload="setAlert()">
+              <strong>Success! </strong>{{success}}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          </div>
+          {{/if}}
+          
+          <div class="activity">
+              <div class="card">  
+                <div class="card-header">Register Form</div>
+                <div class="card-body">
+                  <form action="/auth/register" method="POST">
+                  
+                  
+                  <!--Name Input Field--> 
+                  <div class="form-group" style="padding: 5px;">
+                    <label for="fullname">Fullname</label>
+                    <input type="text" class="form-control" id="fullname" name= "fullname" placeholder="Enter Fullname" required>
+                  </div>
+                  
+                    <!--Email Input Field-->  
+                    <div class="form-group" style="padding: 5px;">
+                      <label for="email">Email address</label>
+                        <div class="input-group">
+                        <input type="email" class="input form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter Email" title="Enter a valid email address" onkeyup="validateEmail()" required>
+                        </div>
+                        <small id="Eincorrect" class="invalid" style="display: none; color:red"><i class="bi bi-exclamation-circle-fill"></i> Please enter a valid email address</small><small id="Ecorrect" class="valid" style="display: none; color:rgb(146, 231, 17);"><i class="bi bi-check-circle-fill"></i> Correct</small>
+                    </div>
+                              
+                    <!--Password Input Field-->                            
+                    <div class="form-group" style="padding:5px;">
+                      <label for="password">Password</label><br>
+                      <small>(At least one number, one special character and one uppercase and lowercase letter, and at least 8 or more characters)</small> 
+                      <div class="input-group">
+                        <input type="password" id="password" name="password" class="input form-control" placeholder="Password" aria-label="password" aria-describedby="basic-addon1" pattern="(?=.*[!@#$%^&*)(+=._-])(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number, one special character and one uppercase and lowercase letter, and at least 8 or more characters" onkeyup="validatePassword(); validatePasswordConfirm();" required>
+                        
+                        <div class="input-group-append">
+                          <span class="input-group-text" onclick="password_show_hide();">
+                            <i class="bi bi-eye-fill" id="P_show_eye"></i>
+                            <i class="bi bi-eye-slash-fill d-none" id="P_hide_eye"></i>
+                          </span>
+                        </div> 
+                                   
+                      </div>
+                      <small id="Pincorrect" class="invalid" style="display: none; color:red"><i class="bi bi-exclamation-circle-fill"></i> Must contain at least one number, one special character and one uppercase and lowercase letter, and at least 8 or more characters</small>
+                      <small id="Pcorrect" class="valid" style="display: none; color:rgb(146, 231, 17);"><i class="bi bi-check-circle-fill"></i> Correct</small>
+                    </div>
+                    
+                    <!--Password Confirm Input Field-->          
+                    <div class="form-group" style="padding: 5px;">
+                      <label for="passwordConfirm">Confirm Password</label>
+                        <div class="input-group">
+                          <input type="password" class="form-control" id="passwordConfirm" name="passwordConfirm" placeholder="Confirm Password" aria-label="password" aria-describedby="basic-addon1" pattern="(?=.*[!@#$%^&*)(+=._-])(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number, one special character and one uppercase and lowercase letter, and at least 8 or more characters" onkeyup="validatePasswordConfirm();" required>
+                          <div class="input-group-append">
+                          <span class="input-group-text" onclick="passwordconfirm_show_hide();">
+                            <i class="bi bi-eye-fill" id="PC_show_eye"></i>
+                            <i class="bi bi-eye-slash-fill d-none" id="PC_hide_eye"></i>
+                          </span>
+                        </div>   
+                        </div>
+                      <small id="PCmatchincorrect" class="invalid" style="display: none; color:red"><i class="bi bi-exclamation-circle-fill"></i> Password do not match</small>
+                      <small id="PCmatch" class="valid" style="display: none; color:rgb(146, 231, 17);"><i class="bi bi-check-circle-fill"></i> Password match</small>         
+                    </div>
+                    
+                    <!--IC Input Field-->           
+                    <div class="form-group" style="padding: 5px;">
+                      <label for="ic">IC Number</label>
+                        <div class="input-group">
+                          <input type="text" class="form-control" id="ic" name="ic" placeholder="Eg: 909090909090" pattern="(?=.*[0-9]).{12}" title="Must contain 12 digit numbers only"  onkeyup="validateIC();" required>
+                        </div>
+                        <small id="ICincorrect" class="invalid" style="display: none; color:red"><i class="bi bi-exclamation-circle-fill"></i> Enter a valid IC number</small>
+                        <small id="ICcorrect" class="valid" style="display: none; color:rgb(146, 231, 17);"><i class="bi bi-check-circle-fill"></i> Correct</small>
+                    </div>
+                    
+                    <!--Role Input Field-->
+                    <div class="form-group" style="padding: 5px; width:fit-content">
+                      <label for="role">Select Role</label>
+                      <select class="form-select"  id="role" name="role" aria-label="role">
+                        <option value="Patient" selected>Patient</option>
+                        <option value="Doctor">Doctor</option>
+                        <option value="Admin">Admin</option>
+                      </select>
+                    </div>
+                    
+                    <!--Healthcare Input Field--> 
+                    <div class="form-group" style="padding: 5px; width:fit-content">
+                      <label for="healthcare">Select Healthcare Provider</label>
+                      <select class="form-select"  id="healthcare" name="healthcare" aria-label="healthcare">
+                        
+                        {{#each rows}}
+                        <option value="{{{this.id}}}">{{{this.name}}}, {{{this.state}}}</option>
+                        {{/each}}
+                        
+                      </select>
+                    </div>
+
+                    <!--Button Register-->
+                    <div class="form-group" style="padding: 5px;">
+                      <div class="btn-group">
+                        <button type="submit" class="btn btn-primary" style="padding: 5px;">Register</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+</section>
+
+<script>
+
+function setAlert(){
+    //window.location.href = window.location.href;
+    if (confirm("Refresh Page?")) {
+      window.location.href='/v_register';
+    } else {
+    
+    }
+}
+function validateEmail(){
+    var myEmail = document.getElementById("email");
+    var incorrect = document.getElementById("Eincorrect");
+    var correct= document.getElementById("Ecorrect");
+    console.log(myEmail.value);
+    let email = myEmail.value;
+    if(email.includes("@") && (email.includes("com") || email.includes("my") || email.includes("co") ||email.includes("net") ||email.includes("org") ||email.includes("biz") ||email.includes("info") ||email.includes("uk") ||email.includes("us") ||email.includes("ca") ||email.includes("eu") ||email.includes("me") ||email.includes("asia") ||email.includes("au") ||email.includes("work") ||email.includes("online") ||email.includes("site") ||email.includes("website") || email.includes("cloud") || email.includes("app") || email.includes("tech") || email.includes("io") || email.includes("company") ||  email.includes("vip") ||  email.includes("email"))){
+      incorrect.classList.remove("invalid");
+      incorrect.classList.add("valid");
+      incorrect.style.display = "none";
+      correct.style.display = "block"; 
+    }else{
+      incorrect.classList.remove("valid");
+      incorrect.classList.add("invalid");
+      incorrect.style.display="block";
+      correct.style.display = "none";
+    }
+}
+
+
+function validateIC(){
+    var myIC = document.getElementById("ic");
+    var incorrect = document.getElementById("ICincorrect");
+    var correct= document.getElementById("ICcorrect");
+    var numbersIC= /[0-9]/g;
+    
+    console.log(myIC.value);
+    
+    if(myIC.value.match(numbersIC) && myIC.value.length == 12) {
+      incorrect.classList.remove("invalid");
+      incorrect.classList.add("valid");
+      incorrect.style.display = "none";
+      correct.style.display = "block";  
+    } else {
+      incorrect.classList.remove("valid");
+      incorrect.classList.add("invalid");
+      incorrect.style.display="block";
+      correct.style.display = "none";
+    }
+}
+
+function validatePassword(){
+    
+    var lowerCaseLetters = /[a-z]/g;
+    var upperCaseLetters = /[A-Z]/g;
+    var numbers = /[0-9]/g;
+    var char = /[!@#$%^&*)(+=._-]/g;
+    
+    var myP = document.getElementById("password");
+    var P_incorrect = document.getElementById("Pincorrect");
+    var P_correct= document.getElementById("Pcorrect");
+
+    console.log(myP.value);
+    
+    if(myP.value.length>0){
+      if(myP.value.match(lowerCaseLetters) && myP.value.match(upperCaseLetters) && myP.value.match(numbers) && myP.value.match(char) && myP.value.length >= 8){
+        P_incorrect.classList.remove("invalid");
+        P_incorrect.classList.add("valid");
+        P_incorrect.style.display = "none";
+        P_correct.style.display = "block";  
+      }else{
+        P_incorrect.classList.remove("valid");
+        P_incorrect.classList.add("invalid");
+        P_incorrect.style.display="block";
+        P_correct.style.display = "none";
+      }
+    }
+}
+
+function validatePasswordConfirm(){
+    
+    var myP = document.getElementById("password");
+    var myPC = document.getElementById("passwordConfirm");
+    var PC_matchincorrect = document.getElementById("PCmatchincorrect");
+    var PC_match= document.getElementById("PCmatch");
+    console.log(myPC.value);
+    
+    if(myP.value.length>0 && myPC.value.length>0){
+      if(myP.value === myPC.value){
+        PC_matchincorrect.classList.remove("invalid");
+        PC_matchincorrect.classList.add("valid");
+        PC_matchincorrect.style.display = "none";
+        PC_match.style.display = "block";
+      }else{
+        PC_matchincorrect.classList.remove("valid");
+        PC_matchincorrect.classList.add("invalid");
+        PC_matchincorrect.style.display = "block";
+        PC_match.style.display = "none";
+      }
+    }
+}
+
+function password_show_hide() {
+    var x = document.getElementById("password");
+    var P_show_eye = document.getElementById("P_show_eye");
+    var P_hide_eye = document.getElementById("P_hide_eye");
+    
+    P_hide_eye.classList.remove("d-none");
+    if (x.type === "password") {
+      x.type = "text";
+      P_show_eye.style.display = "none";
+      P_hide_eye.style.display = "block";
+    } else {
+      x.type = "password";
+      P_show_eye.style.display = "block";
+      P_hide_eye.style.display = "none";
+    }
+}
+
+function passwordconfirm_show_hide() {
+    var x = document.getElementById("passwordConfirm");
+    var PC_show_eye = document.getElementById("PC_show_eye");
+    var PC_hide_eye = document.getElementById("PC_hide_eye");
+    
+    PC_hide_eye.classList.remove("d-none");
+    if (x.type === "password") {
+      x.type = "text";
+      PC_show_eye.style.display = "none";
+      PC_hide_eye.style.display = "block";
+    } else {
+      x.type = "password";
+      PC_show_eye.style.display = "block";
+      PC_hide_eye.style.display = "none";
+    }
+}
+</script>
+
+
+
+

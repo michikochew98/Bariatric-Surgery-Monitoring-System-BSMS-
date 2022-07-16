@@ -1,0 +1,226 @@
+<!--<nav>
+	<h4>Bariact</h4>
+	<ul>
+		<li><a href="/">Dashboard</a></li>
+		<li><a href="/">Diet</a></li>
+		<li><a href="/">Profile</a></li>
+		<li><a href="/auth/logout">Log Out</a></li>
+	</ul>
+</nav>-->
+
+
+<nav>
+    <div class="logo-name">
+        <div class="logo-image">
+            <img src="/logo.png" alt="">
+        </div>
+
+        <span class="logo_name">BARIACT</span>
+    </div>
+	
+    <div class="menu-items">
+        <ul class="nav-links">
+            <li><a href="/doctor/dashboard">
+                <i class="uil uil-estate"></i>
+                <span class="link-name">Dashboard</span>
+            </a></li>
+            <li><a href="/doctor/diet">
+                <i class="uil uil-utensils"></i>
+                <span class="link-name">Diet</span>
+            </a></li>
+            <li><a href="/doctor/exercise">
+                <i class="uil uil-basketball"></i>
+                <span class="link-name">Exercise</span>
+            </a></li>
+			<li><a href="/doctor/screening">
+                <i class="uil uil-clipboard-alt"></i>
+                <span class="link-name">Screening Form</span>
+            </a></li>   
+                <li><a href="/doctor/analytics">
+                <i class="uil uil-chart"></i>
+                <span class="link-name">Analytics</span>
+            </a></li>
+            
+            <li><a href="/doctor/profile">
+                <i class="uil uil-user-circle"></i>
+                <span class="link-name">Profile</span>
+            </a></li>
+          
+        </ul>
+        
+        <ul class="logout-mode">
+     
+            <li><a href="/auth/logout">
+                <i class="uil uil-signout"></i>
+                <span class="link-name">Logout</span>
+            </a></li>
+            
+
+            <li class="mode">
+                <a href="#">
+                    <i class="uil uil-moon"></i>
+                <span class="link-name">Dark Mode</span>
+				</a>
+
+				<div class="mode-toggle">
+					<span class="switch"></span>
+				</div>
+			</li>
+        </ul>        
+    </div>
+</nav>
+
+
+<section class="dashboard">
+	
+    <div class="top">
+        <i class="uil uil-bars sidebar-toggle"></i>
+		  <h6 style="float: right;">
+            {{#if user}}
+                {{#if user.image}}
+                    <img src="/images/{{user.image}}" class="pp" id="pp" style="height: 30px; width:30px; object-fit: cover; overflow:hidden"/>
+                {{else}}
+                    <img src="/images/profileimage.png"  class="pp" id="pp" style="height: 30px; width:30px; object-fit: cover; overflow:hidden"/>
+                {{/if}}
+                {{user.role}}, {{user.fullname}}, {{user.email}}, {{user.ic}}
+            {{/if}}
+            
+            
+            {{#each getuser}}
+                 {{#if this.image}}
+                    <img src="/images/{{this.image}}" class="pp" id="pp" style="height: 30px; width:30px; object-fit: cover; overflow:hidden"/>
+                {{else}}
+                    <img src="/images/profileimage.png"  class="pp" id="pp" style="height: 30px; width:30px; object-fit: cover; overflow:hidden"/>
+                {{/if}}
+                {{this.role}}, {{this.fullname}}, {{this.email}}, {{this.ic}}
+            {{/each}}
+            
+            </h6>
+    </div>
+	
+    <div class="dash-content">
+		<div class="overview">
+			
+			<div class="title">
+                <i class="uil uil-utensils"></i>
+                <span class="text">Your Patients' Food List</span>
+            </div>
+
+			<!-- Diet Main View-->
+			{{#if removedFood}}
+			<div class="container" style="background-color: #ffffff;">
+				<div class="alert alert-success alert-dismissible fade show" role="alert">
+					<strong>Success! </strong>{{removedFood}}
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+			</div>
+			{{/if}}
+ 
+			{{#if alert}}
+
+			<br><br>
+			<ol class="breadcrumb" style="background-color: #ffffff;">
+				<li class="breadcrumb-item"><a href="/doctor/diet">Back to Diet</a></li>
+				<li class="breadcrumb-item active" aria-current="page">Search Patients' Food</li>
+			</ol>
+			<br>
+
+			<div class="container" style="background-color: #ffffff;">
+				<div class="alert alert-success alert-dismissible fade show" role="alert">
+					<strong>Success! </strong>{{alert}}
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+			</div>
+			{{/if}}
+
+			<div class="activity">
+		
+				<!--button for ADD 
+				<div class="d-flex justify-content-end">
+					<div class="dropdown">
+						<button class="btn btn-primary dropdown-toggle align-self-center" type="button" id="dropdownMenu2" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							+ Add Food
+						</button>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+							<a class="dropdown-item" href="/diet/foodlist">Search Food Database</a>
+							<a class="dropdown-item" href="/diet/add">Enter Form</a>
+						</div>
+					</div>
+				</div>-->
+				
+				<!--button for SEARCH -->
+				<div class="input-group mb-3">
+					<form class="input-group mb-3" method="POST" action="/doctor/diet/search">
+						<input type="search" class="form-control" name="search" placeholder="Search Patients' Name" aria-label="Search">
+						{{#if user.fullname}}
+						<input type="hidden" class="form-control" id="user_fullname" name= "user_fullname" value="{{user.fullname}}">
+						{{/if}}
+						
+						{{#if getuser}}
+						<input type="hidden" class="form-control" id="user_fullname" name= "user_fullname" value="{{this.fullname}}">
+						{{/if}}
+						
+						<div class="input-group-append">
+							<span type="submit" class="input-group-text"><i class="bi bi-search"></i></span>
+						</div>
+					</form>
+				</div>
+				
+				<table id="example" style="width:100%;text-align: center" class="table table-bordered">
+					
+					<thead>
+						<tr>
+							<!--<th scope="col">#</th>-->
+							<th scope="col" class="text-center">Patient's Name</th>
+							<th scope="col" class="text-center">Food</th>
+							<th scope="col" class="text-center">Meal</th>
+							<th scope="col" class="text-center">Serving Size</th>
+							<th scope="col" class="text-center">Serving Type</th>
+							<th scope="col" class="text-center">Calories(kcal)</th>
+							<th scope="col" class="text-center">Time</th>
+							<th scope="col" class="text-center">View</th> 
+						
+						
+						</tr>
+					</thead>
+				
+					<tbody>
+					
+						{{#each patientdiet}}	
+						<tr>
+							<!--<th scope="row">{{{this.id}}}</th>-->
+							<td>{{{this.fullname}}}</td>
+							<td>{{{this.name}}}</td>
+							<td>{{{this.type}}}</td>
+							<td>{{{this.serving_size}}}</td>
+							<td>{{{this.serving_type}}}</td>
+							<td>{{{this.calories}}}</td>
+							<td>{{{this.time}}}</td>
+							<td  class="text-center">
+								<a href="/doctor/diet/{{this.id}}" type="button" class="btn btn-light btn-small"><i class="bi bi-eye-fill"></i></a>
+							</td>
+						</tr>
+						{{/each}}
+						
+						{{#each rows}}
+						<tr>
+							<!--<th scope="row">{{{this.id}}}</th>-->
+							<td>{{{this.fullname}}}</td>
+							<td>{{{this.name}}}</td>
+							<td>{{{this.type}}}</td>
+							<td>{{{this.serving_size}}}</td>
+							<td>{{{this.serving_type}}}</td>
+							<td>{{{this.calories}}}</td>
+							<td>{{{this.time}}}</td>
+							<td  class="text-center">
+								<a href="/doctor/diet/{{this.id}}" type="button" class="btn btn-light btn-small"><i class="bi bi-eye-fill"></i></a>
+							</td>
+						</tr>
+						{{/each}}
+						
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</section>

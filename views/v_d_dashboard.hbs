@@ -1,0 +1,252 @@
+<!--
+<nav>
+<h4>Bariact</h4>
+<ul>
+<li><a href="/">Home</a></li>
+{{#if user}} 
+    <li><a href="/profile">Profile</a></li>
+    <li><a href="/auth/logout">Log Out</a></li>
+{{else}}
+    <li><a href="/login">Login</a></li>
+    <li><a href="/register">Register</a></li>
+{{/if}}
+</ul>
+</nav>
+-->
+
+
+<nav>
+    <div class="logo-name">
+        <div class="logo-image">
+            <img src="/logo.png" alt="">
+        </div>
+
+        <span class="logo_name">BARIACT</span>
+    </div>
+
+    <div class="menu-items">
+
+      <ul class="nav-links">
+            <li><a href="/doctor/dashboard">
+                <i class="uil uil-estate"></i>
+                <span class="link-name">Dashboard</span>
+            </a></li>
+            <li><a href="/doctor/diet">
+                <i class="uil uil-utensils"></i>
+                <span class="link-name">Diet</span>
+            </a></li>
+            <li><a href="/doctor/exercise">
+                <i class="uil uil-basketball"></i>
+                <span class="link-name">Exercise</span>
+            </a></li>
+			<li><a href="/doctor/screening">
+                <i class="uil uil-clipboard-alt"></i>
+                <span class="link-name">Screening Form</span>
+            </a></li>   
+                <li><a href="/doctor/analytics">
+                <i class="uil uil-chart"></i>
+                <span class="link-name">Analytics</span>
+            </a></li>
+            
+            <li><a href="/doctor/profile">
+                <i class="uil uil-user-circle"></i>
+                <span class="link-name">Profile</span>
+            </a></li>
+          
+        </ul>
+
+        <ul class="logout-mode">
+
+            <li><a href="/auth/logout">
+                <i class="uil uil-signout"></i>
+                <span class="link-name">Logout</span>
+            </a></li>
+            
+
+            <li class="mode">
+                <a href="#">
+                    <i class="uil uil-moon"></i>
+                <span class="link-name">Dark Mode</span>
+                </a>
+
+                <div class="mode-toggle">
+                    <span class="switch"></span>
+                </div>
+            </li>
+        </ul>        
+    </div>
+</nav>
+
+<section class="dashboard">
+    <div class="top">
+        <i class="uil uil-bars sidebar-toggle"></i>
+           <h6 style="float: right;">
+            {{#if user}}
+                {{#if user.image}}
+                    <img src="/images/{{user.image}}" class="pp" id="pp" style="height: 30px; width:30px; object-fit: cover; overflow:hidden"/>
+                {{else}}
+                    <img src="/images/profileimage.png"  class="pp" id="pp" style="height: 30px; width:30px; object-fit: cover; overflow:hidden"/>
+                {{/if}}
+                {{user.role}}, {{user.fullname}}, {{user.email}}, {{user.ic}}
+            {{/if}}
+            
+            
+            {{#each getuser}}
+                 {{#if this.image}}
+                    <img src="/images/{{this.image}}" class="pp" id="pp" style="height: 30px; width:30px; object-fit: cover; overflow:hidden"/>
+                {{else}}
+                    <img src="/images/profileimage.png"  class="pp" id="pp" style="height: 30px; width:30px; object-fit: cover; overflow:hidden"/>
+                {{/if}}
+                {{this.role}}, {{this.fullname}}, {{this.email}}, {{this.ic}}
+            {{/each}}
+            
+            </h6>
+    </div>
+    <div class="dash-content">
+        <div class="overview">
+            <div class="title">
+                <i class="uil uil-estate"></i>
+                <span class="text">Dashboard</span>
+            </div>
+
+            <div class="boxes">
+                <!--<div class="box box1">
+                    <i class="uil uil-utensils"></i>
+                    <span class="text">Food</span>
+                    <span class="number">2000</span>
+                </div>-->
+                <div class="box box2">
+                    <i class="uil uil-user-circle"></i>
+                    <span class="text">Total Patients</span>
+                    {{#if patientnum}}
+                    <span class="number">{{{patientnum}}}</span>
+                    {{/if}}
+                    
+                </div>
+               <!-- <div class="box box3">
+                    <i class="uil uil-share"></i>
+                    <span class="text">Testing</span>
+                    <span class="number">10,120</span>
+                </div>-->
+            </div>
+        </div>
+        
+        
+        <div class="activity">
+            <div class="title">
+                <i class="uil uil-clock-three"></i>
+                <span class="text">Patients' Details</span>
+            </div>
+    
+            <div class="activity-data">
+                
+                <div class="data names">
+                    <span class="data-title">Name</span>
+                    {{#each row}}
+                    <span class="data-list"><a href="/doctor/dashboard/{{this.ic}}">{{this.fullname}}   <i class="bi bi-eye-fill"></i></a></span>
+                    {{/each}}
+                </div>
+                <div class="data email">
+                    <span class="data-title">IC</span>
+                    {{#each row}}
+                    <span class="data-list">{{this.ic}}</span>
+                    {{/each}}
+                </div>
+                <div class="data status">
+                    <span class="data-title">Recommended Daily Intake(kcal)</span>
+                    {{#each row}}
+                    <span class="data-list">{{this.daily_intake}}</span>
+                    {{/each}}
+                </div>
+                <div class="data status">
+                    <span class="data-title">BMI</span>
+                    {{#each row}}
+                    <span class="data-list">{{this.bmi}}</span>
+                    {{/each}}
+                </div>
+                <div class="data type">
+                    <span class="data-title">Status</span>
+                    {{#each row}}
+                    <span class="data-list">{{this.surgery_status}}</span>
+                    {{/each}} 
+                </div>
+                <div class="data joined">
+                    <span class="data-title">Operation Date</span>
+                    {{#each row}}
+                    <span class="data-list">{{this.surgery_date}}</span>
+                    {{/each}}
+                </div>
+                
+            </div>
+        </div>
+
+        <!--<canvas id="myfirstChart" style="width:100%;max-width:700px"></canvas>
+        <script>
+            var xValues = [100,200,300,400,500,600,700,800,900,1000];
+
+            new Chart("myfirstChart", {
+            type: "line",
+            data: {
+                labels: xValues,
+                datasets: [{ 
+                data: [860,1140,1060,1060,1070,1110,1330,2210,7830,2478],
+                borderColor: "red",
+                fill: false
+                }, { 
+                data: [1600,1700,1700,1900,2000,2700,4000,5000,6000,7000],
+                borderColor: "green",
+                fill: false
+                }, { 
+                data: [300,700,2000,5000,6000,4000,2000,1000,200,100],
+                borderColor: "blue",
+                fill: false
+                }]
+            },
+            options: {
+                legend: {display: false}
+            }
+            });
+        </script>-->
+        
+        
+        <!--<canvas id="myChart" width="200" height="200"></canvas>
+        <script>
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                datasets: [{
+                    label: '# of Votes',
+                    data: [12, 19, 3, 5, 2, 3],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+        </script> -->
+    </div>
+</section>
+

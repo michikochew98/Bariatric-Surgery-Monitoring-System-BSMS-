@@ -1,0 +1,191 @@
+{{#if user.ic}}
+<!--IC Input Field--> 
+<div class="form-group" id="ic" name= "ic" style="display: none;">
+<input type="hidden" class="form-control" id="ic" name= "ic" value="{{user.ic}}">
+</div>
+<!--Name Input Field--> 
+<div class="form-group" id="fullname" name= "fullname"  style="display: none;">
+<input type="hidden" class="form-control" id="fullname" name= "fullname" value="{{user.fullname}}">
+</div>
+{{/if}}
+
+{{#if this.ic}}
+<!--IC Input Field--> 
+<div class="form-group" id="ic" name= "ic"  style="display: none;">
+<input type="hidden" class="form-control" id="ic" name= "ic" value="{{this.ic}}">
+</div>
+<!--Name Input Field--> 
+<div class="form-group" id="fullname" name= "fullname"  style="display: none;">
+<input type="hidden" class="form-control" id="fullname" name= "fullname" value="{{this.fullname}}">
+</div>
+{{/if}}
+
+
+
+<!--Name Input Field
+<div class="form-group" style="padding: 5px;">
+	<label for="fullname">Fullname</label>
+	<input type="text" class="form-control" id="fullname" name= "fullname" placeholder="Enter Fullname" value = "{{this.fullname}}">
+</div>-->
+
+<!--Age Input Field
+<div class="form-group" id="age" name= "age">
+	<input type="hidden" class="form-control" id="age" name= "age" value="0">
+</div>-->
+
+	
+<!--Home Address Input Field--> 				
+<div class="form-group" style="padding: 5px;">
+	<label for="home_address">Home address</label>
+	<input type="text" class="form-control" id="home_address" name="home_address" placeholder="Enter Home Address" value="{{this.home_address}}">
+</div>
+
+<!--Physical Activity Input Field--> 
+<div class="form-group" style="padding: 5px; width:fit-content;">
+	<label for="activity_level">Select Physical Activity Level</label>
+	<select class="form-select"  id="activity_level" name="activity_level" aria-label="activity_level">
+		<option value="Sedentary" selected>Sedentary</option>
+		<option value="Lightly Active">Lightly Active</option>
+		<option value="Moderately Active">Moderately Active</option>
+		<option value="Highly Active">Highly Active</option>
+		<option value="Extremely Active">Extremely Active</option>
+		
+		{{#if this.activity_level}}
+		<option value="{{this.activity_level}}" selected hidden>{{this.activity_level}}</option>
+		{{/if}}
+		
+	</select>
+</div>
+
+<!--Phone Number Input Field--> 
+<div class="form-group" style="padding: 5px;">
+	<label for="phone_number">Phone Number</label>
+	<input type="number" class="form-control" id="phone_number" name="phone_number" placeholder="Eg: 0123456789" value="{{this.phone_number}}" pattern="(?=.*[0-9])" title="Must contain 10 or 11 digit numbers only"  onkeyup="validatePN();" required>
+	<small id="incorrect" class="invalid" style="display: none; color:red float: left;"><i class="bi bi-exclamation-circle-fill"></i> Please enter a valid phone number format(Eg: 0123456789)</small>
+    <small id="correct" class="valid" style="display: none; color:rgb(146, 231, 17); float: left;"><i class="bi bi-check-circle-fill"></i> Correct</small>
+</div>
+
+<!--Gender Input Field
+<div class="form-group" id="gender" name= "gender">
+	<input type="hidden" class="form-control" id="gender" name= "gender" value="unknown">
+</div>-->
+
+<!--Marital Status Input Field--> 
+<div class="form-group" style="padding: 5px;  width:fit-content;">
+	<label for="marital_status">Select Marital Status</label>
+	<select class="form-select"  id="marital_status" name="marital_status" aria-label="marital_status">
+		
+		<option value="Single" selected>Single</option>
+		<option value="Married">Married</option>
+		<option value="Divorce">Divorce</option>
+		<option value="Separated">Separated</option>
+		<option value="Widowed">Widowed</option>
+		
+		{{#if this.marital_status}}
+		<option value="{{this.marital_status}}" selected hidden>{{this.marital_status}}</option> 
+		{{/if}}
+	
+	</select>
+</div>
+
+<!--Height Input Field--> 
+<div class="form-group" style="padding: 5px;">
+	<label for="height">Height</label>
+	<input type="number" class="form-control" id="height" name="height" placeholder="Enter Height(cm)" value="{{this.height}}">
+</div>
+
+<!--Surgery Status Input Field--> 
+<div class="form-group" style="padding: 5px; width:fit-content;">
+	<label for="surgery_status">Select Surgery Status</label>
+	<select class="form-select"  id="surgery_status" name="surgery_status" aria-label="surgery_status">
+		<option value="Post-Operation" selected>Post-Operation</option>
+		<option value="Pre-Operation">Pre-Operation</option>
+		
+		{{#if this.surgery_status}}
+		<option value="{{this.surgery_status}}" selected hidden>{{this.surgery_status}}</option>
+		{{/if}}
+	
+	</select>
+</div>
+
+<!--Current Weight Input Field--> 
+<div class="form-group" style="padding: 5px;">
+	<label for="curr_weight">Current Weight</label>
+	<input type="number" class="form-control" id="curr_weight" name="curr_weight" placeholder="Enter Weight(kg)" 
+	value="{{this.curr_weight}}">
+</div>
+
+<!--Weight Before Surgery Input Field--> 
+<div class="form-group" id="before_surg_weight" name="before_surg_weight" style="padding: 5px;">
+	<label for="before_surg_weight" id="before_surg_weight" name="before_surg_weight">Weight Before Operation</label>
+	<input type="number" class="form-control" id="before_surg_weight" name="before_surg_weight" placeholder="Enter Weight(kg)" value="{{this.before_surg_weight}}">
+</div>
+
+
+<!--Date of Operation Input Field--> 
+<div class="form-group" style="padding: 5px; width:fit-content; display:none;">
+	<div class="input-group date">
+		<input type="datetime" class="form-control" id="temp_surgery_date" name="temp_surgery_date" value="{{this.surgery_date}}">
+	</div>
+</div>
+
+<!--Date of Operation Input Field--> 
+<div class="form-group" style="padding: 5px; width:fit-content">
+	<label for="surgery_date">Date of Operation</label>
+	<div class="input-group date" id="surgery_date_group" name="surgery_date_group">
+		<!--<input type="date" class="form-control"  data-date="" data-date-format="YYYY-MM-DD" id="surgery_date" name="surgery_date" value="2017-06-01" placeholder="{{this.surgery_date}}">-->
+		<input type="date" class="form-control" data-date="{{this.surgery_date}}" data-date-format="YYYY-MM-DD" id="surgery_date" name="surgery_date" value="{{this.surgery_date}}" placeholder="{{this.surgery_date}}">
+		<div class="input-group-addon">
+			<span class="glyphicon glyphicon-th"></span>
+		</div>
+	</div>
+</div>
+
+
+<div class="form-group" style="padding: 5px;">
+	<div class="btn-group">
+		<button type="submit" class="btn btn-primary" style="padding: 5px;">Update Profile</button>
+	</div>
+</div>
+
+<script>
+	console.log("Surgery Date: "+document.getElementById("temp_surgery_date").value);
+	
+	var datep = new Date(document.getElementById("temp_surgery_date").value);
+	var dayp = datep.getDate();
+	if(dayp < 10){
+		dayp = '0' + dayp.toString();
+	}
+	
+	var monthp = (datep.getMonth()+1);
+	if(monthp < 10){
+		monthp = '0' + monthp.toString();
+	}
+	 
+	 document.getElementById("surgery_date").value = datep.getFullYear() + "-" + monthp + "-" + dayp; 
+	 
+	function validatePN(){
+
+		var myP = document.getElementById("phone_number");
+		var P_incorrect = document.getElementById("incorrect");
+		var P_correct= document.getElementById("correct");
+		var pattern = /(?=.*[0-9])/g;
+
+		console.log(myP.value);
+		if(myP.value.length > 0){
+			if ((parseInt(myP.value) != null) && (myP.value.match(pattern)) && (myP.value.length == 10 || myP.value.length == 11)){
+				P_incorrect.classList.remove("invalid");
+				P_incorrect.classList.add("valid");
+				P_incorrect.style.display = "none";
+				P_correct.style.display = "block";  //display correct
+			}else{
+				P_incorrect.classList.remove("valid");
+				P_incorrect.classList.add("invalid");
+				P_incorrect.style.display="block";
+				P_correct.style.display = "none";
+			}
+		}
+		
+	}
+	 
+</script>

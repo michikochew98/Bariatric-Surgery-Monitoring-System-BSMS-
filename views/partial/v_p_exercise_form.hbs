@@ -1,0 +1,197 @@
+<div class="col-6" style="display:none;">
+	<div class="form-floating mb-3">
+		<input type="datetime" class="form-control" id="temp_time" name="temp_time" value="{{{this.time}}}">
+		<label for="temp_time">Select Temporary Time</label>
+	</div>
+</div>
+
+<div class="col-6">
+	<div class="form-floating mb-3">
+		<input type="datetime-local" class="form-control" id="time" placeholder="Select Time" name="time" id="time" value="{{this.time}}">
+		<label for="time">Select Time</label>
+	</div>
+</div>
+
+<div class="col-6">
+	<div class="form-floating mb-3">
+	
+		
+		{{#if user.ic}}
+			<!--IC Input Field--> 
+			<div class="form-group" id="ic" name= "ic">
+				<input type="hidden" class="form-control" id="ic" name= "ic" value="{{user.ic}}">
+			</div>
+			<!--Name Input Field--> 
+			<div class="form-group" id="fullname" name= "fullname">
+				<input type="hidden" class="form-control" id="fullname" name= "fullname" value="{{user.fullname}}">
+			</div>
+		{{/if}}
+
+		{{#if this.ic}}
+			<!--IC Input Field--> 
+			<div class="form-group" id="ic" name= "ic">
+				<input type="hidden" class="form-control" id="ic" name= "ic" value="{{this.ic}}">
+			</div>
+			<!--Name Input Field--> 
+			<div class="form-group" id="fullname" name= "fullname">
+				<input type="hidden" class="form-control" id="fullname" name= "fullname" value="{{this.fullname}}">
+			</div>
+		{{/if}}
+		
+		{{#if assignedTo}}     
+		<div class="form-group" id="assignedTo" name= "assignedTo">
+			<input type="hidden" class="form-control" id="assignedTo" name= "assignedTo" value="{{assignedTo}}">
+		</div>
+		{{/if}}
+	
+		<select class="form-select"  id="activity" placeholder="Activity Name" name="activity" id="activity" value="{{this.activity}}"aria-label="activity" aria-selected="{{{this.activity}}}" aria-valuetext="{{{this.activity}}}" aria-valuenow="{{{this.activity}}}" >
+			
+			<!--hidangan & sajian & set-->
+		
+			{{#if this.activity}}
+			<option value="{{this.activity}}" selected>{{this.activity}}</option>
+			{{/if}}
+						
+			<option value="walking">walking</option>
+			<option value="running">running</option>
+			<option value="badminton">badminton</option>
+			<option value="cycling">cycling</option>
+			<option value="swimming">swimming</option>
+			<option value="zumba">zumba</option>
+			<option value="yoga">yoga</option>
+			<option value="dancing">dancing</option>
+			<option value="aerobics">aerobics</option>
+			<option value="football">football</option>
+			<option value="volleyball">volleyball</option>
+			<option value="baseball">baseball</option>
+			<option value="basketball">basketball</option>
+			<option value="squash">squash</option>
+			<option value="weightlifting">weightlifting</option>
+		
+	
+		</select>
+		<label for="activity">Activity</label>
+	</div>
+</div>
+
+<div class="col-6">
+	<div class="form-floating mb-3">
+		<input type="text" class="form-control" id="duration" placeholder="00:00:00" name="duration" id="duration" pattern="[0-9]{2}:[0-9]{2}:[0-9]{2}"value="{{this.duration}}" onkeyup="validateD();" required>
+		<label for="duration">Duration (hh:mm:ss)</label><br>
+		<small  id="incorrect" class="invalid" style="display: none; color:red; float: left;"><i class="bi bi-exclamation-circle-fill"></i> Must contain format 00:00:00</small>
+		<small  id="correct" class="valid" style="display: none; color:rgb(146, 231, 17); float: left;"><i class="bi bi-check-circle-fill"></i> Correct</small>
+	</div>
+</div>
+
+<div class="col-5">
+	<div class="form-floating mb-3">
+		<input type="number" class="form-control" id="step_count" placeholder="Step Count" name="step_count" id="step_count" value="{{this.step_count}}" min="1" onkeyup="validateSC();" required>
+		<label for="step_count">Step Count</label>
+		<small style="float: left;">Minimum Value: 1</small><br>
+		<small  id="P_incorrect" class="invalid" style="display: none; color:red; float: left;"><i class="bi bi-exclamation-circle-fill"></i> Must contain minimum value of 1</small>
+		<small  id="P_correct" class="valid" style="display: none; color:rgb(146, 231, 17); float: left;"><i class="bi bi-check-circle-fill"></i> Correct</small>
+	</div>
+</div>
+
+<!--
+<div class="col-1" style="height: min-content;"><center><h5>OR</h5></center></div>
+
+<div class="col-6">
+	<div class="form-floating mb-3">
+		<input type="number" class="form-control" id="distance" placeholder="Distance" name="distance" id="distance" value="{{this.distance}}">
+		<label for="distance">Distance (m)</label>
+	</div>
+</div>-->
+
+
+<div class="col-12 d-grid">
+	<button class="btn btn-primary" type="submit">Submit</button>
+</div>	
+			
+			
+<script>
+	
+	//2013-02-27T23:57:55
+	
+	console.log("Time: "+document.getElementById("temp_time").value);
+	
+	var datep = new Date(document.getElementById("temp_time").value);
+	var dayp = datep.getDate();
+	if(dayp < 10){
+		dayp = '0' + dayp.toString();
+	}
+	
+	var monthp = (datep.getMonth()+1);
+	if(monthp < 10){
+		monthp = '0' + monthp.toString();
+	}
+	
+	var hourp = datep.getHours();
+	if(hourp < 10){
+		hourp = '0' + hourp.toString();
+	}
+	
+	var minp = datep.getMinutes();
+	if(minp < 10){
+		minp = '0' + minp.toString();
+	}
+	
+	var secp = datep.getSeconds();
+	if(secp < 10){
+		secp = '0' + secp.toString();
+	}
+	
+	document.getElementById("time").value = datep.getFullYear() + "-" + monthp + "-" + dayp + "T" + hourp + ":" + minp + ":" + secp ;
+	
+	
+function validateSC(){
+
+    var myP = document.getElementById("step_count");
+    var P_incorrect = document.getElementById("P_incorrect");
+    var P_correct= document.getElementById("P_correct");
+	
+
+    console.log(myP.value);
+    if(myP.value.length > 0){
+        if ((parseInt(myP.value) != null) && (parseInt(myP.value) != 0) && !(parseInt(myP.value) < 1)){
+            P_incorrect.classList.remove("invalid");
+            P_incorrect.classList.add("valid");
+            P_incorrect.style.display = "none";
+            P_correct.style.display = "block";  //display correct
+        }else{
+            P_incorrect.classList.remove("valid");
+            P_incorrect.classList.add("invalid");
+            P_incorrect.style.display="block";
+            P_correct.style.display = "none";
+        }
+    }
+    
+}
+	
+	
+	
+function validateD(){
+
+    var myP = document.getElementById("duration");
+    var P_incorrect = document.getElementById("incorrect");
+    var P_correct= document.getElementById("correct");
+	var pattern = /[0-9]{2}:[0-9]{2}:[0-9]{2}/g;
+
+    console.log(myP.value);
+    if(myP.value.length > 0){
+        if ((parseInt(myP.value) != null) && (myP.value.match(pattern))){
+            P_incorrect.classList.remove("invalid");
+            P_incorrect.classList.add("valid");
+            P_incorrect.style.display = "none";
+            P_correct.style.display = "block";  //display correct
+        }else{
+            P_incorrect.classList.remove("valid");
+            P_incorrect.classList.add("invalid");
+            P_incorrect.style.display="block";
+            P_correct.style.display = "none";
+        }
+    }
+    
+}
+</script>	
+			

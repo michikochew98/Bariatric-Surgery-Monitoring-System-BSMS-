@@ -1,0 +1,168 @@
+<!--<nav>
+	<h4>Bariact</h4>
+	<ul>
+		<li><a href="/">Home</a></li>
+		<li><a href="/diet/view">Diet</a></li>
+		<li><a href="/profile">Profile</a></li>
+		<li><a href="/auth/logout">Log Out</a></li>
+	</ul>
+</nav>-->
+
+<nav>
+    <div class="logo-name">
+        <div class="logo-image">
+            <img src="/logo.png" alt="">
+        </div>
+
+        <span class="logo_name">BARIACT</span>
+    </div>
+	
+    <div class="menu-items">
+        <ul class="nav-links">
+            <li><a href="/doctor/dashboard">
+                <i class="uil uil-estate"></i>
+                <span class="link-name">Dashboard</span>
+            </a></li>
+            <li><a href="/doctor/diet">
+                <i class="uil uil-utensils"></i>
+                <span class="link-name">Diet</span>
+            </a></li>
+            <li><a href="/doctor/exercise">
+                <i class="uil uil-basketball"></i>
+                <span class="link-name">Exercise</span>
+            </a></li>
+			<li><a href="/doctor/screening">
+                <i class="uil uil-clipboard-alt"></i>
+                <span class="link-name">Screening Form</span>
+            </a></li>   
+                <li><a href="/doctor/analytics">
+                <i class="uil uil-chart"></i>
+                <span class="link-name">Analytics</span>
+            </a></li>
+            
+            <li><a href="/doctor/profile">
+                <i class="uil uil-user-circle"></i>
+                <span class="link-name">Profile</span>
+            </a></li>
+          
+        </ul>
+        
+        <ul class="logout-mode">
+     
+            <li><a href="/auth/logout">
+                <i class="uil uil-signout"></i>
+                <span class="link-name">Logout</span>
+            </a></li>
+            
+
+            <li class="mode">
+                <a href="#">
+                    <i class="uil uil-moon"></i>
+                <span class="link-name">Dark Mode</span>
+				</a>
+
+				<div class="mode-toggle">
+					<span class="switch"></span>
+				</div>
+			</li>
+        </ul>        
+    </div>
+</nav>
+
+
+<section class="dashboard">
+    <div class="top">
+        <i class="uil uil-bars sidebar-toggle"></i>
+		  <h6 style="float: right;">
+            {{#if user}}
+                {{#if user.image}}
+                    <img src="/images/{{user.image}}" class="pp" id="pp" style="height: 30px; width:30px; object-fit: cover; overflow:hidden"/>
+                {{else}}
+                    <img src="/images/profileimage.png"  class="pp" id="pp" style="height: 30px; width:30px; object-fit: cover; overflow:hidden"/>
+                {{/if}}
+                {{user.role}}, {{user.fullname}}, {{user.email}}, {{user.ic}}
+            {{/if}}
+            
+            
+            {{#each getuser}}
+                 {{#if this.image}}
+                    <img src="/images/{{this.image}}" class="pp" id="pp" style="height: 30px; width:30px; object-fit: cover; overflow:hidden"/>
+                {{else}}
+                    <img src="/images/profileimage.png"  class="pp" id="pp" style="height: 30px; width:30px; object-fit: cover; overflow:hidden"/>
+                {{/if}}
+                {{this.role}}, {{this.fullname}}, {{this.email}}, {{this.ic}}
+            {{/each}}
+            
+            </h6>
+        
+    </div>
+    <div class="dash-content">
+		<div class="overview">
+			
+			<div class="title">
+                <i class="uil uil-basketball"></i>
+                <span class="text">Display Patient's Exercise List</span>
+            </div>
+			
+			<br><br>
+			<ol class="breadcrumb" style="background-color: #ffffff;">
+				<li class="breadcrumb-item"><a href="/doctor/exercise">Back to Exercise</a></li>
+				<li class="breadcrumb-item active" aria-current="page">Display Exercise</li>
+			</ol>
+			<br>
+			
+			{{#if alert}}
+			<div class="container" style="background-color: #ffffff;">
+				<div class="alert alert-success alert-dismissible fade show" role="alert">
+					<strong>Success! </strong>{{alert}}
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+			</div>
+			{{/if}}
+
+			<br>
+			<div class="activity">
+				{{#each rows}} 
+				<div class="row mb-5"> 
+					<div class="col text-center">
+						<h3>{{this.activity}}</h3>
+						<h3>Calories Burn: {{this.calories_burn}} kcal</h3>
+					</div>
+				</div>
+				<div class="row"> 
+					<div class="col"> 
+						<table class="table table-bordered"> 
+							<thead> 
+								<tr>
+								<th scope="col">Patient's ID</th> 
+								<th scope="col">Activity</th> 
+								<th scope="col" class="text-center">Duration</th>
+								<th scope="col" class="text-center">Step Count</th>
+								
+								<th scope="col" class="text-center">Calories Burn(kcal)</th>
+								<th scope="col">Time</th> 
+								<th scope="col">Last Update</th> 
+								</tr> 
+							</thead> 
+							<tbody> 
+								<tr>
+								<th scope="row">{{this.ic}}</th> 
+								<th scope="row">{{this.activity}}</th> 
+								<td>{{{this.duration}}}</td>
+								<td>{{{this.step_count}}}</td>
+							
+								<td>{{{this.calories_burn}}}</td>
+								<td>{{{this.time}}}</td>
+								<td>{{this.updatedAt}}</td> 
+								</tr>
+							</tbody> 
+						</table>
+					</div>
+				</div>
+				{{/each}}
+			</div>	
+		</div>
+	</div>
+</section>
+
+

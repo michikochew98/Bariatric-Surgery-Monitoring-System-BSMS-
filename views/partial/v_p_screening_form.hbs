@@ -1,0 +1,252 @@
+<center><h3><u><b>Depression Screening Form</b></u></h3></center>
+{{#if user.ic}}
+<!--IC Input Field--> 
+<div class="form-group" id="ic" name= "ic">
+<input type="hidden" class="form-control" id="ic" name= "ic" value="{{user.ic}}">
+</div>
+<!--Name Input Field--> 
+<div class="form-group" id="fullname" name= "fullname">
+<input type="hidden" class="form-control" id="fullname" name= "fullname" value="{{user.fullname}}">
+</div>
+{{/if}}
+
+{{#if this.ic}}
+<!--IC Input Field--> 
+<div class="form-group" id="ic" name= "ic">
+<input type="hidden" class="form-control" id="ic" name= "ic" value="{{this.ic}}">
+</div>
+<!--Name Input Field--> 
+<div class="form-group" id="fullname" name= "fullname">
+<input type="hidden" class="form-control" id="fullname" name= "fullname" value="{{this.fullname}}">
+</div>
+{{/if}}
+
+{{#if assignedTo}}     
+<div class="form-group" id="assignedTo" name= "assignedTo">
+  <input type="hidden" class="form-control" id="assignedTo" name= "assignedTo" value="{{assignedTo}}">
+</div>
+{{/if}}
+
+<h6>1. Do you feel that you don’t look attractive anymore? </h6>
+<div class="form-check">
+  <input type="radio" class="form-check-input" id="depress1" name="depress1" value="yes">
+  <label class="form-check-label" for="depress1">Yes</label>
+</div>
+<div class="form-check">
+  <input type="radio" class="form-check-input" id="depress1" name="depress1" value="no" checked>
+  <label class="form-check-label" for="depress1">No</label>
+</div>
+
+<h6>2. Do you experience emotional changes after undergoing bariatric surgery?  </h6>
+<div class="form-check">
+  <input type="radio" class="form-check-input" id="depress2" name="depress2" value="yes">
+  <label class="form-check-label" for="depress2">Yes</label>
+</div>
+<div class="form-check">
+  <input type="radio" class="form-check-input" id="depress2" name="depress2" value="no" checked>
+  <label class="form-check-label" for="depress2">No</label>
+</div>
+
+<h6>3. Are you having sleep disturbance after undergoing bariatric surgery? </h6>
+<div class="form-check">
+  <input type="radio" class="form-check-input" id="depress3" name="depress3" value="yes">
+  <label class="form-check-label" for="depress3">Yes</label>
+</div>
+<div class="form-check">
+  <input type="radio" class="form-check-input" id="depress3" name="depress3" value="no" checked>
+  <label class="form-check-label" for="depress3">No</label>
+</div>
+
+<h6>4. Are you always tired after undergoing bariatric surgery? </h6>
+<div class="form-check">
+  <input type="radio" class="form-check-input" id="depress4" name="depress4" value="yes">
+  <label class="form-check-label" for="depress4">Yes</label>
+</div>
+<div class="form-check">
+  <input type="radio" class="form-check-input" id="depress4" name="depress4" value="no" checked>
+  <label class="form-check-label" for="depress4">No</label>
+</div>
+
+<h6>5. Do you always feel guilty after undergoing bariatric surgery?  </h6>
+<div class="form-check">
+  <input type="radio" class="form-check-input" id="depress5" name="depress5" value="yes">
+  <label class="form-check-label" for="depress5">Yes</label>
+</div>
+<div class="form-check">
+  <input type="radio" class="form-check-input" id="depress5" name="depress5" value="no" checked>
+  <label class="form-check-label" for="depress5">No</label>
+</div>
+
+<!--If the answer is yes for all questions, the alert will be sent to the health care professionals 
+indicating depression-->
+
+<br>
+<center><h3><u><b>Eating Habits Screening Form</b></u></h3></center>
+
+<h6>1. Will you eat more when you feel stressed after bariatric surgery? </h6>
+<div class="form-check">
+  <input type="radio" class="form-check-input" id="eat1" name="eat1" value="yes">
+  <label class="form-check-label" for="eat1">Yes</label>
+</div>
+<div class="form-check">
+  <input type="radio" class="form-check-input" id="eat1" name="eat1" value="no" checked>
+  <label class="form-check-label" for="eat1">No</label>
+</div>
+
+<h6>2. Do you always feel hungry after bariatric surgery? </h6>
+<div class="form-check">
+  <input type="radio" class="form-check-input" id="eat2" name="eat2" value="yes">
+  <label class="form-check-label" for="eat2">Yes</label>
+</div>
+<div class="form-check">
+  <input type="radio" class="form-check-input" id="eat2" name="eat2" value="no" checked>
+  <label class="form-check-label" for="eat2">No</label>
+</div>
+
+<h6>3. Do you have trouble to follow the dietary advice given by the dietitian after bariatric surgery? </h6>
+<div class="form-check">
+  <input type="radio" class="form-check-input" id="eat3" name="eat3" value="yes">
+  <label class="form-check-label" for="eat3">Yes</label>
+</div>
+<div class="form-check">
+  <input type="radio" class="form-check-input" id="eat3" name="eat3" value="no" checked>
+  <label class="form-check-label" for="eat3">No</label>
+</div>
+
+<h6>4. Do you have trouble to control the number of snacks consumed after bariatric surgery? </h6>
+<div class="form-check">
+  <input type="radio" class="form-check-input" id="eat4" name="eat4" value="yes">
+  <label class="form-check-label" for="eat4">Yes</label>
+</div>
+<div class="form-check">
+  <input type="radio" class="form-check-input" id="eat4" name="eat4" value="no" checked>
+  <label class="form-check-label" for="eat4">No</label>
+</div>
+
+<h6>5. Do you always think about food? </h6>
+<div class="form-check">
+  <input type="radio" class="form-check-input" id="eat5" name="eat5" value="yes">
+  <label class="form-check-label" for="eat5">Yes</label>
+</div>
+<div class="form-check">
+  <input type="radio" class="form-check-input" id="eat5" name="eat5" value="no" checked>
+  <label class="form-check-label" for="eat5">No</label>
+</div>
+<!--If the answer is yes, yes, yes, yes and yes, an alert must be sent to the dietitian-->
+
+{{#if update}}
+
+<center><h3><u><b>Depression Screening Form</b></u></h3></center>
+
+<h6>1. Do you feel that you don’t look attractive anymore? </h6>
+<div class="form-check">
+  <input type="radio" class="form-check-input" id="depress1" name="depress1" value="{{this.depress1}}">
+  <label class="form-check-label" for="depress1">Yes</label>
+</div>
+<div class="form-check">
+  <input type="radio" class="form-check-input" id="depress1" name="depress1" value="{{this.depress1}}">
+  <label class="form-check-label" for="depress1">No</label>
+</div>
+
+<h6>2. Do you experience emotional changes after undergoing bariatric surgery?  </h6>
+<div class="form-check">
+  <input type="radio" class="form-check-input" id="depress2" name="depress2" value="{{this.depress2}}">
+  <label class="form-check-label" for="depress2">Yes</label>
+</div>
+<div class="form-check">
+  <input type="radio" class="form-check-input" id="depress2" name="depress2" value="{{this.depress2}}">
+  <label class="form-check-label" for="depress2">No</label>
+</div>
+
+<h6>3. Are you having sleep disturbance after undergoing bariatric surgery? </h6>
+<div class="form-check">
+  <input type="radio" class="form-check-input" id="depress3" name="depress3" value="{{this.depress3}}">
+  <label class="form-check-label" for="depress3">Yes</label>
+</div>
+<div class="form-check">
+  <input type="radio" class="form-check-input" id="depress3" name="depress3" value="{{this.depress3}}">
+  <label class="form-check-label" for="depress3">No</label>
+</div>
+
+<h6>4. Are you always tired after undergoing bariatric surgery? </h6>
+<div class="form-check">
+  <input type="radio" class="form-check-input" id="depress4" name="depress4" value="{{this.depress4}}">
+  <label class="form-check-label" for="depress4">Yes</label>
+</div>
+<div class="form-check">
+  <input type="radio" class="form-check-input" id="depress4" name="depress4" value="{{this.depress4}}">
+  <label class="form-check-label" for="depress4">No</label>
+</div>
+
+<h6>5. Do you always feel guilty after undergoing bariatric surgery?  </h6>
+<div class="form-check">
+  <input type="radio" class="form-check-input" id="depress5" name="depress5" value="{{this.depress5}}">
+  <label class="form-check-label" for="depress5">Yes</label>
+</div>
+<div class="form-check">
+  <input type="radio" class="form-check-input" id="depress5" name="depress5" value="{{this.depress5}}">
+  <label class="form-check-label" for="depress5">No</label>
+</div>
+
+<!--If the answer is yes for all questions, the alert will be sent to the health care professionals 
+indicating depression-->
+
+<br>
+<center><h3><u><b>Eating Habits Screening Form</b></u></h3></center>
+
+<h6>1. Will you eat more when you feel stressed after bariatric surgery? </h6>
+<div class="form-check">
+  <input type="radio" class="form-check-input" id="eat1" name="eat1" value="{{this.eat1}}">
+  <label class="form-check-label" for="eat1">Yes</label>
+</div>
+<div class="form-check">
+  <input type="radio" class="form-check-input" id="eat1" name="eat1" value="{{this.eat1}}">
+  <label class="form-check-label" for="eat1">No</label>
+</div>
+
+<h6>2. Do you always feel hungry after bariatric surgery? </h6>
+<div class="form-check">
+  <input type="radio" class="form-check-input" id="eat2" name="eat2" value="{{this.eat2}}">
+  <label class="form-check-label" for="eat2">Yes</label>
+</div>
+<div class="form-check">
+  <input type="radio" class="form-check-input" id="eat2" name="eat2" value="{{this.eat2}}">
+  <label class="form-check-label" for="eat2">No</label>
+</div>
+
+<h6>3. Do you have trouble to follow the dietary advice given by the dietitian after bariatric surgery? </h6>
+<div class="form-check">
+  <input type="radio" class="form-check-input" id="eat3" name="eat3" value="{{this.eat3}}">
+  <label class="form-check-label" for="eat3">Yes</label>
+</div>
+<div class="form-check">
+  <input type="radio" class="form-check-input" id="eat3" name="eat3" value="{{this.eat3}}">
+  <label class="form-check-label" for="eat3">No</label>
+</div>
+
+<h6>4. Do you have trouble to control the number of snacks consumed after bariatric surgery? </h6>
+<div class="form-check">
+  <input type="radio" class="form-check-input" id="eat4" name="eat4" value="{{this.eat4}}">
+  <label class="form-check-label" for="eat4">Yes</label>
+</div>
+<div class="form-check">
+  <input type="radio" class="form-check-input" id="eat4" name="eat4" value="{{this.eat4}}">
+  <label class="form-check-label" for="eat4">No</label>
+</div>
+
+<h6>5. Do you always think about food? </h6>
+<div class="form-check">
+  <input type="radio" class="form-check-input" id="eat5" name="eat5" value="{{this.eat5}}">
+  <label class="form-check-label" for="eat5">Yes</label>
+</div>
+<div class="form-check">
+  <input type="radio" class="form-check-input" id="eat5" name="eat5" value="{{this.eat5}}">
+  <label class="form-check-label" for="eat5">No</label>
+</div>
+<!--If the answer is yes, yes, no, no and yes, an alert must be sent to the dietitian-->
+{{/if}}
+
+<div class="col-12 d-grid">
+	<button class="btn btn-primary" type="submit">Submit</button>
+</div>	
+			

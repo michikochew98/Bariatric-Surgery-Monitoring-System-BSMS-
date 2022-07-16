@@ -1,0 +1,277 @@
+<!--
+<nav>
+<h4>Bariact</h4>
+<ul>
+<li><a href="/">Home</a></li>
+{{#if user}} 
+    <li><a href="/profile">Profile</a></li>
+    <li><a href="/auth/logout">Log Out</a></li>
+{{else}}
+    <li><a href="/login">Login</a></li>
+    <li><a href="/register">Register</a></li>
+{{/if}}
+</ul>
+</nav>
+-->
+
+
+<nav>
+    <div class="logo-name">
+        <div class="logo-image">
+            <img src="/logo.png" alt="">
+        </div>
+
+        <span class="logo_name">BARIACT</span>
+    </div>
+
+    <div class="menu-items">
+
+      <ul class="nav-links">
+            <li><a href="/doctor/dashboard">
+                <i class="uil uil-estate"></i>
+                <span class="link-name">Dashboard</span>
+            </a></li>
+            <li><a href="/doctor/diet">
+                <i class="uil uil-utensils"></i>
+                <span class="link-name">Diet</span>
+            </a></li>
+            <li><a href="/doctor/exercise">
+                <i class="uil uil-basketball"></i>
+                <span class="link-name">Exercise</span>
+            </a></li>
+			<li><a href="/doctor/screening">
+                <i class="uil uil-clipboard-alt"></i>
+                <span class="link-name">Screening Form</span>
+            </a></li>   
+                <li><a href="/doctor/analytics">
+                <i class="uil uil-chart"></i>
+                <span class="link-name">Analytics</span>
+            </a></li>
+            
+            <li><a href="/doctor/profile">
+                <i class="uil uil-user-circle"></i>
+                <span class="link-name">Profile</span>
+            </a></li>
+          
+        </ul>
+
+        <ul class="logout-mode">
+
+            <li><a href="/auth/logout">
+                <i class="uil uil-signout"></i>
+                <span class="link-name">Logout</span>
+            </a></li>
+            
+
+            <li class="mode">
+                <a href="#">
+                    <i class="uil uil-moon"></i>
+                <span class="link-name">Dark Mode</span>
+                </a>
+
+                <div class="mode-toggle">
+                    <span class="switch"></span>
+                </div>
+            </li>
+        </ul>        
+    </div>
+</nav>
+
+<section class="dashboard">
+    <div class="top">
+        <i class="uil uil-bars sidebar-toggle"></i>
+         <h6 style="float: right;">
+            {{#if user}}
+                {{#if user.image}}
+                    <img src="/images/{{user.image}}" class="pp" id="pp" style="height: 30px; width:30px; object-fit: cover; overflow:hidden"/>
+                {{else}}
+                    <img src="/images/profileimage.png"  class="pp" id="pp" style="height: 30px; width:30px; object-fit: cover; overflow:hidden"/>
+                {{/if}}
+                {{user.role}}, {{user.fullname}}, {{user.email}}, {{user.ic}}
+            {{/if}}
+            
+            
+            {{#each getuser}}
+                 {{#if this.image}}
+                    <img src="/images/{{this.image}}" class="pp" id="pp" style="height: 30px; width:30px; object-fit: cover; overflow:hidden"/>
+                {{else}}
+                    <img src="/images/profileimage.png"  class="pp" id="pp" style="height: 30px; width:30px; object-fit: cover; overflow:hidden"/>
+                {{/if}}
+                {{this.role}}, {{this.fullname}}, {{this.email}}, {{this.ic}}
+            {{/each}}
+            
+            </h6>
+    </div>
+    <div class="dash-content">
+             
+        <div class="activity">
+            <div class="title">
+                <i class="uil uil-clock-three"></i>
+                <span class="text">Patients' Details</span>
+            </div>
+            
+            {{#if alert}}
+                <br>
+                <ol class="breadcrumb" style="background-color: #ffffff;">
+                    <li class="breadcrumb-item"><a href="/doctor/dashboard">Back to All Patients' Details</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">View Patient's Details</li>
+                </ol>
+                <br>
+                 
+                <div class="container" style="background-color: #ffffff;">
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Success! </strong>{{alert}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div>
+                
+            {{else}}
+            
+                {{#if message}}
+                <div class="container" style="background-color: #ffffff;">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Fail! </strong>{{message}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div>
+                {{else}}
+                
+            
+                    <div class="activity">
+                        
+                        {{#each row}}
+                        <br>
+                        <ol class="breadcrumb" style="background-color: #ffffff;">
+                            <li class="breadcrumb-item"><a href="/doctor/dashboard">Back to All Patients' Details</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">View {{this.fullname}}'s Details</li>
+                        </ol>
+                        <br>
+                        
+                        <div class="card" style="width: 80%;margin: 0 auto;text-align:center">
+                            <div class="card-header text-white bg-primary"><h5 class="card-title"><label class="form-label">{{this.fullname}}'s Details</label></h5></div>
+                            <div class="card-body">
+                                <form style="width: 100%;margin: 0 auto;" class="row g-3 needs-validation" method="POST" action="/doctor/dashboard/{{this.ic}}">
+                                
+                                <div class="col-12">
+                                    <div class="form-floating mb-3">
+                                            
+                                        {{#each ../result}}
+                                            <img src="/images/{{this.image}}" class="avatar" id="avatar" alt="User Profile Picture"/>
+                                        {{/each}}
+                                    </div>
+                                </div>
+                                
+                                <div class="col-12">
+                                    <div class="form-floating mb-3">
+                                        {{#if ../user.ic}}
+                                            <input type="hidden" class="form-control" id="user_ic" name= "user_ic" value="{{../user.ic}}">
+                                        {{/if}}
+                                    
+                            
+                                        {{#if ../getuser}}
+                                        <input type="hidden" class="form-control" id="user_ic" name= "user_ic" value="{{../this.ic}}">
+                                        {{/if}}
+                                    
+                                        <input type="number" class="form-control" id="daily_intake" name= "daily_intake" value="{{this.daily_intake}}" min="100" max="100000" title="Acceptable Range: 100-100000"  onkeyup="validateDI();" required>
+                                        <label class="form-label" id="daily_intake" name= "daily_intake">{{this.fullname}}'s Recommended Daily Calories Intake(kcal):</label>
+                                        <small style="float: left;">(Acceptable Range: 100-100,000)</small><br>
+                                        
+                                        <small  id="P_incorrect" class="invalid" style="display: none; color:red; float: left;"><i class="bi bi-exclamation-circle-fill"></i> Must contain numbers in range: 100-100,000</small>
+                                        <small  id="P_correct" class="valid" style="display: none; color:rgb(146, 231, 17); float: left;"><i class="bi bi-check-circle-fill"></i> Correct</small>
+                                       
+                                    </div>
+                                </div>
+                                
+                                <div class="col-12">
+                                    <div class="form-floating mb-3">
+                                        
+                                        <input type="number" class="form-control" id="weight_goal" name= "weight_goal" value="{{this.weight_goal}}" min="10" max="1000" title="Acceptable Range: 10-1000"  onkeyup="validateWG();" required>
+                                        <label class="form-label" id="weight_goal" name= "weight_goal">{{this.fullname}}'s Recommended Weight Loss Goal(kg):</label>
+                                        <small style="float: left;">(Acceptable Range: 10-1000)</small><br>
+                                        
+                                        <small  id="WG_incorrect" class="invalid" style="display: none; color:red; float: left;"><i class="bi bi-exclamation-circle-fill"></i> Must contain numbers in range: 10-1000</small>
+                                        <small  id="WG_correct" class="valid" style="display: none; color:rgb(146, 231, 17); float: left;"><i class="bi bi-check-circle-fill"></i> Correct</small>
+                                        
+                                    </div>
+                                </div>
+                                
+                                {{#each ../result}}
+                                <div class="col-12">
+                                    <div class="form-floating mb-3">
+                                        <input type="text" class="form-control" id="ic" name= "ic" value="{{this.ic}}" disabled>
+                                        <label class="form-label" id="ic" name= "ic">Patient's IC:</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-floating mb-3">
+                                        <input type="text" class="form-control" id="email" name= "email" value="{{this.email}}" disabled>
+                                        <label class="form-label" id="email" name= "email">Patient's Email:</label>
+                                    </div>
+                                </div>
+                                {{/each}}
+
+                                {{> v_d_dashboard_form}}
+                                </form>
+                            </div>
+                        </div>
+                        
+                        {{/each}}
+                    </div>	
+                {{/if}}
+                
+            {{/if}}
+        </div>
+    </div>
+</section>
+
+<script>
+
+function validateDI(){
+
+    var myP = document.getElementById("daily_intake");
+    var P_incorrect = document.getElementById("P_incorrect");
+    var P_correct= document.getElementById("P_correct");
+
+    console.log(myP.value);
+    if(myP.value.length > 0){
+        if ((parseInt(myP.value) != null) && (parseInt(myP.value) != 0) && !(parseInt(myP.value) < 100) && !(parseInt(myP.value) > 100000)){
+            P_incorrect.classList.remove("invalid");
+            P_incorrect.classList.add("valid");
+            P_incorrect.style.display = "none";
+            P_correct.style.display = "block";  //display correct
+        }else{
+            P_incorrect.classList.remove("valid");
+            P_incorrect.classList.add("invalid");
+            P_incorrect.style.display="block";
+            P_correct.style.display = "none";
+        }
+    }
+    
+}
+
+
+function validateWG(){
+
+    var myP = document.getElementById("weight_goal");
+    var P_incorrect = document.getElementById("WG_incorrect");
+    var P_correct= document.getElementById("WG_correct");
+
+    console.log(myP.value);
+    if(myP.value.length > 0){
+        if ((parseInt(myP.value) != null) && (parseInt(myP.value) != 0) && !(parseInt(myP.value) < 10) && !(parseInt(myP.value) > 1000)){
+            P_incorrect.classList.remove("invalid");
+            P_incorrect.classList.add("valid");
+            P_incorrect.style.display = "none";
+            P_correct.style.display = "block";  //display correct
+        }else{
+            P_incorrect.classList.remove("valid");
+            P_incorrect.classList.add("invalid");
+            P_incorrect.style.display="block";
+            P_correct.style.display = "none";
+        }
+    }
+    
+}
+    
+    
+</script>

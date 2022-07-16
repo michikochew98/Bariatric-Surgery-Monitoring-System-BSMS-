@@ -1,0 +1,254 @@
+<!--<nav>
+	<h4>Bariact</h4>
+	<ul>
+		<li><a href="/">Home</a></li>
+		<li><a href="/diet/view">Diet</a></li>
+		<li><a href="/profile">Profile</a></li>
+		<li><a href="/auth/logout">Log Out</a></li>
+	</ul>
+</nav>-->
+<nav>
+    <div class="logo-name">
+        <div class="logo-image">
+            <img src="/logo.png" alt="">
+        </div>
+
+        <span class="logo_name">BARIACT</span>
+    </div>
+	
+    <div class="menu-items">
+        <ul class="nav-links">
+            <li><a href="/admin/healthcare">
+                <i class="uil uil-hospital"></i>
+                <span class="link-name">Healthcare</span>
+            </a></li>
+			<li><a href="/admin/patientlist">
+                <i class="uil uil-clinic-medical"></i>
+                <span class="link-name">Patient List</span>
+            </a></li>
+			<li><a href="/admin/doctorlist">
+                <i class="uil uil-user-md"></i>
+                <span class="link-name">Doctor List</span>
+            </a></li>
+        </ul>
+        
+        <ul class="logout-mode">
+     
+            <li><a href="/auth/logout">
+                <i class="uil uil-signout"></i>
+                <span class="link-name">Logout</span>
+            </a></li>
+            
+
+            <li class="mode">
+                <a href="#">
+                    <i class="uil uil-moon"></i>
+                <span class="link-name">Dark Mode</span>
+				</a>
+
+				<div class="mode-toggle">
+					<span class="switch"></span>
+				</div>
+			</li>
+        </ul>        
+    </div>
+</nav>
+
+<section class="dashboard">
+    <div class="top">
+        <i class="uil uil-bars sidebar-toggle"></i>
+        <h6>{{user.role}}, {{user.fullname}}, {{user.email}}, {{user.ic}}</h6>
+    </div>
+    
+    <div class="dash-content">
+        <div class="overview">
+			
+			<div class="title">
+                <i class="uil uil-clinic-medical"></i>
+                <span class="text">Display Your Patient List </span>
+            </div>
+            
+            <br><br>
+            <ol class="breadcrumb" style="background-color: #ffffff;">
+                <li class="breadcrumb-item"><a href="/admin/patientlist">Back to Patient List</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Display Patient List</li>
+            </ol>
+            <br>
+
+            {{#if alert}}
+            <div class="container" style="background-color: #ffffff;">
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Success! </strong>{{alert}}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+            {{/if}}
+
+            <br>
+            <div class="activity">
+                {{#each rows}} 
+                
+                <div class="row"> 
+                    <div class="col"> 
+                        <table class="table table-bordered"> 
+                            <thead> 
+                                <tr><th scope="col">Name</th></tr> 
+                            </thead> 
+                            <tbody> 
+                                <tr><td>{{this.fullname}}</td></tr>
+                            </tbody>
+                        </table><br>
+                        
+                        <table class="table table-bordered"> 
+                            <thead> 
+                                <tr><th scope="col">IC</th></tr> 
+                            </thead> 
+                            <tbody> 
+                                <tr><td>{{this.ic}}</td></tr>
+                            </tbody>
+                        </table><br>
+                        
+                         <table class="table table-bordered"> 
+                            <thead> 
+                                <tr><th scope="col">Assigned Doctor</th></tr> 
+                            </thead> 
+                            <tbody> 
+                                <tr><td>{{this.assignedTo}}</td></tr>
+                            </tbody>
+                        </table><br>
+                        
+                        <table class="table table-bordered"> 
+                            <thead> 
+                                <tr><th scope="col">Home Address</th></tr> 
+                            </thead> 
+                            <tbody> 
+                                <tr><td>{{this.home_address}}</td></tr>
+                            </tbody>
+                        </table><br>
+                        
+                        <table class="table table-bordered"> 
+                            <thead> 
+                                <tr><th scope="col">Phone Number</th></tr> 
+                            </thead> 
+                            <tbody> 
+                                <tr><td>{{this.phone_number}}</td></tr>
+                            </tbody>
+                        </table><br>
+                        
+                        <table class="table table-bordered"> 
+                            <thead> 
+                                <tr><th scope="col">Age</th></tr> 
+                            </thead> 
+                            <tbody> 
+                                <tr><td>{{this.age}}</td></tr>
+                            </tbody>
+                        </table><br>
+                        
+                        <table class="table table-bordered"> 
+                            <thead> 
+                                <tr><th scope="col">Gender</th></tr> 
+                            </thead> 
+                            <tbody> 
+                                <tr><td>{{this.gender}}</td></tr>
+                            </tbody>
+                        </table><br>
+                        
+                        <table class="table table-bordered"> 
+                            <thead> 
+                                <tr><th scope="col">Marital Status</th></tr> 
+                            </thead> 
+                            <tbody> 
+                                <tr><td>{{this.marital_status}}</td></tr>
+                            </tbody>
+                        </table><br>
+                        
+                        
+                        <table class="table table-bordered"> 
+                            <thead> 
+                                <tr><th scope="col">Activity Level</th></tr> 
+                            </thead> 
+                            <tbody> 
+                                <tr><td>{{this.activity_level}}</td></tr>
+                            </tbody>
+                        </table><br>
+                        
+                        <table class="table table-bordered"> 
+                            <thead> 
+                                <tr><th scope="col">Height(cm)</th></tr> 
+                            </thead> 
+                            <tbody> 
+                                <tr><td>{{this.height}}</td></tr>
+                            </tbody>
+                        </table><br>
+                        
+                        <table class="table table-bordered"> 
+                            <thead> 
+                                <tr><th scope="col">BMI</th></tr> 
+                            </thead> 
+                            <tbody> 
+                                <tr><td>{{this.bmi}}</td></tr>
+                            </tbody>
+                        </table><br>
+                        
+                        <table class="table table-bordered"> 
+                            <thead> 
+                                <tr><th scope="col">Surgery Status</th></tr> 
+                            </thead> 
+                            <tbody> 
+                                <tr><td>{{this.surgery_status}}</td></tr>
+                            </tbody>
+                        </table><br>
+                        
+                        <table class="table table-bordered"> 
+                            <thead> 
+                                <tr><th scope="col">Current Weight(kg)</th></tr> 
+                            </thead> 
+                            <tbody> 
+                                <tr><td>{{this.curr_weight}}</td></tr>
+                            </tbody>
+                        </table><br>
+                        
+                        <table class="table table-bordered"> 
+                            <thead> 
+                                <tr><th scope="col">Before Surgery Weight(kg)</th></tr> 
+                            </thead> 
+                            <tbody> 
+                                <tr><td>{{this.before_surg_weight}}</td></tr>
+                            </tbody>
+                        </table><br>
+                        
+                        <table class="table table-bordered"> 
+                            <thead> 
+                                <tr><th scope="col">Surgery Date</th></tr> 
+                            </thead> 
+                            <tbody> 
+                                <tr><td>{{this.surgery_date}}</td></tr>
+                            </tbody>
+                        </table><br>
+                        
+                        <table class="table table-bordered"> 
+                            <thead> 
+                                <tr><th scope="col">Account Created On</th></tr> 
+                            </thead> 
+                            <tbody> 
+                                <tr><td>{{this.createdAt}}</td></tr>
+                            </tbody>
+                        </table><br>
+                        
+                        <table class="table table-bordered"> 
+                            <thead> 
+                                <tr><th scope="col">Last Update On</th></tr> 
+                            </thead> 
+                            <tbody> 
+                                <tr><td>{{this.updatedAt}}</td></tr>
+                            </tbody>
+                        </table><br>  
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>	
+    </div>
+</section>
+
+

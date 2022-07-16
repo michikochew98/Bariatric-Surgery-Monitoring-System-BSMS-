@@ -1,0 +1,78 @@
+
+
+<center><h6>{{{this.name}}} ({{{this.serving_weight}}} {{{this.serving_type}}})</h6></center>
+<center><h6>{{{this.serving_size}}} Calories: {{{this.calories}}} kcal </h6></center>
+
+<input type="hidden" class="form-control" id="name" placeholder="Food Name" name="name" id="name" value="{{this.name}}">
+
+<input type="hidden" class="form-control" id="serving_type" placeholder="Serving type" name="serving_type" id="serving_type" value="{{this.serving_type}}">
+	
+<center><div class="col-6">
+	<div class="form-floating mb-3">
+		<input type="datetime-local" class="form-control" id="time" placeholder="Select Time" name="time" id="time" value="{{this.time}}">
+		<label for="time">Select Time</label>
+	</div>
+</div></center>
+
+
+
+<center><div class="col-6">
+	<div class="form-floating mb-3">
+		<select class="form-select"  id="type" name="type" placeholder="Meal" aria-label="type" aria-selected="{{{this.type}}}" aria-valuetext="{{{this.type}}}" aria-valuenow="{{{this.type}}}">
+	
+		{{#if this.type}}
+		<option value="{{this.type}}" selected>{{this.type}}</option>
+		{{/if}}
+		
+		<option value="breakfast">breakfast</option>
+		<option value="brunch">brunch</option>
+		<option value="lunch">lunch</option>
+		<option value="tea">tea</option>
+		<option value="dinner">dinner</option>
+		<option value="supper">supper</option>
+		</select>
+		<label for="type">Meal</label>
+	</div>
+</div></center>
+
+<center><div class="col-6">
+	<div class="form-floating mb-3">
+		<input type="number" class="form-control" id="serving_size" placeholder="Serving size" name="serving_size" id="serving_size" value="{{this.serving_size}}" min="1" onkeyup="validateSS();" required>
+		<label for="serving_size">Serving Size</label>
+		<small style="float: left;">Minimum Value: 1</small><br>
+		<small  id="P_incorrect" class="invalid" style="display: none; color:red; float: left;"><i class="bi bi-exclamation-circle-fill"></i> Must contain minimum value of 1</small>
+		<small  id="P_correct" class="valid" style="display: none; color:rgb(146, 231, 17); float: left;"><i class="bi bi-check-circle-fill"></i> Correct</small>
+	</div>
+</div></center>
+	
+<input type="text" class="form-control" id="calories" placeholder="Calories" name="calories" id="calories" value="{{this.calories}}" hidden>
+<div class="col-12">
+	<button class="btn btn-primary float-right" type="submit">Add New Food</button>
+</div>	
+
+<script>
+	
+	function validateSS(){
+
+    var myP = document.getElementById("serving_size");
+    var P_incorrect = document.getElementById("P_incorrect");
+    var P_correct= document.getElementById("P_correct");
+
+    console.log(myP.value);
+    if(myP.value.length > 0){
+        if ((parseInt(myP.value) != null) && (parseInt(myP.value) != 0) && !(parseInt(myP.value) < 1)){
+            P_incorrect.classList.remove("invalid");
+            P_incorrect.classList.add("valid");
+            P_incorrect.style.display = "none";
+            P_correct.style.display = "block";  //display correct
+        }else{
+            P_incorrect.classList.remove("valid");
+            P_incorrect.classList.add("invalid");
+            P_incorrect.style.display="block";
+            P_correct.style.display = "none";
+        }
+    }
+    
+}
+
+</script>

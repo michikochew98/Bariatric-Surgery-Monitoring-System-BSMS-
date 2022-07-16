@@ -1,0 +1,263 @@
+<!--
+<nav>
+<h4>Bariact</h4>
+<ul>
+<li><a href="/">Home</a></li>
+{{#if user}} 
+    <li><a href="/profile">Profile</a></li>
+    <li><a href="/auth/logout">Log Out</a></li>
+{{else}}
+    <li><a href="/login">Login</a></li>
+    <li><a href="/register">Register</a></li>
+{{/if}}
+</ul>
+</nav>
+-->
+
+
+{{#if user}} 
+<!--<nav>
+	<h4>Bariact</h4>
+	<ul>
+		<li><a href="/">Home</a></li>
+		<li><a href="/diet/view">Diet</a></li>
+		<li><a href="/profile">Profile</a></li>
+		<li><a href="/auth/logout">Log Out</a></li>
+	</ul>
+</nav>-->
+
+<nav>
+    <div class="logo-name">
+        <div class="logo-image">
+            <img src="/logo.png" alt="">
+        </div>
+
+        <span class="logo_name">BARIACT</span>
+    </div>
+
+    <div class="menu-items">
+        
+        <ul class="nav-links">
+            <li><a href="/dashboard">
+                <i class="uil uil-estate"></i>
+                <span class="link-name">Dashboard</span>
+            </a></li>
+            <li><a href="/calendar">
+                <i class="uil uil-calendar-alt"></i>
+                <span class="link-name">Calendar</span>
+            </a></li>
+            <li><a href="/diet/view">
+                <i class="uil uil-utensils"></i>
+                <span class="link-name">Diet</span>
+            </a></li>
+            <li><a href="/exercise/view">
+                <i class="uil uil-basketball"></i>
+                <span class="link-name">Exercise</span>
+            </a></li>
+            <li><a href="/analytics">
+                <i class="uil uil-chart"></i>
+                <span class="link-name">Analytics</span>
+            </a></li>
+            
+            <li><a href="/profile/display">
+                <i class="uil uil-user-circle"></i>
+                <span class="link-name">Profile</span>
+            </a></li>
+          
+        </ul>
+        
+        <ul class="logout-mode">
+     
+            <li><a href="/auth/logout">
+                <i class="uil uil-signout"></i>
+                <span class="link-name">Logout</span>
+            </a></li>
+            
+
+            <li class="mode">
+                <a href="#">
+                    <i class="uil uil-moon"></i>
+                <span class="link-name">Dark Mode</span>
+                </a>
+
+                <div class="mode-toggle">
+                    <span class="switch"></span>
+                </div>
+            </li>
+        </ul>        
+    </div>
+</nav>
+
+
+{{else}}
+<nav>
+    <div class="logo-name">
+    <div class="logo-image">
+        <img src="logo.png" alt="">
+    </div>
+
+    <span class="logo_name">BARIACT</span>
+    </div>
+
+    <div class="menu-items">
+
+    <ul class="nav-links">
+        <li><a href="/">
+            <i class="uil uil-estate"></i>
+            <span class="link-name">Home</span>
+        </a></li>
+        <li><a href="/login">
+            <i class="uil uil-signin"></i>
+            <span class="link-name">Login</span>
+        </a></li>
+
+        <li><a href="/register">
+            <i class="uil uil-file-info-alt"></i>
+            <span class="link-name">Register</span>
+        </a></li>
+    </ul>
+    </div>
+</nav>
+
+<section class="dashboard">
+    <div class="top">
+        <i class="uil uil-bars sidebar-toggle"></i>
+    </div>
+    <div class="dash-content">
+        <div class="container mt-4">
+        <div class="jumbotron">
+            <h1 class="display-4">Bariatric Surgery Web</h1>
+            <p class="lead">BARIACT aka Bariatric Surgery Monitoring System for Patients and Doctors in Universiti Sains Malaysia.</p>
+            <hr class="my-4">
+            <p>Log In or Register to know more! </p>
+            <p class="lead">
+                <a class="btn btn-primary btn-lg" href="/login" role="button">Log In</a>
+                <a class="btn btn-primary btn-lg" href="/register" role="button">Register</a>
+            </p>
+        </div>
+        
+        </div>
+    </div>
+</section>
+
+
+{{/if}}
+
+{{#if user}} 
+<section class="dashboard">
+    <div class="top">
+        <i class="uil uil-bars sidebar-toggle"></i>
+         <h6 style="float: right;">
+            {{#if user}}
+                {{#if user.image}}
+                    <img src="/images/{{user.image}}" class="pp" id="pp" style="height: 30px; width:30px; object-fit: cover; overflow:hidden"/>
+                {{else}}
+                    <img src="/images/profileimage.png"  class="pp" id="pp" style="height: 30px; width:30px; object-fit: cover; overflow:hidden"/>
+                {{/if}}
+                {{user.role}}, {{user.fullname}}, {{user.email}}, {{user.ic}}
+            {{/if}}
+            
+            
+            {{#each getuser}}
+                 {{#if this.image}}
+                    <img src="/images/{{this.image}}" class="pp" id="pp" style="height: 30px; width:30px; object-fit: cover; overflow:hidden"/>
+                {{else}}
+                    <img src="/images/profileimage.png"  class="pp" id="pp" style="height: 30px; width:30px; object-fit: cover; overflow:hidden"/>
+                {{/if}}
+                {{this.role}}, {{this.fullname}}, {{this.email}}, {{this.ic}}
+            {{/each}}
+            
+             {{#if assignedTo}}
+                Assigned to {{assignedTo}}</h6>
+            {{/if}}
+    </div>
+    <div class="dash-content">
+        <div class="overview">
+            <div class="title">
+                <i class="uil uil-estate"></i>
+                <span class="text">Dashboard</span>
+            </div>
+
+            <div class="boxes">
+               
+                <div class="box box2">
+                    <i class="uil uil-user-circle"></i>
+                    <span class="text">Assigned Doctor :</span>
+                     {{#if assignedTo}}
+                    <span class="text">{{{assignedTo}}}</span>
+                    {{/if}}
+                </div>
+              
+            </div>
+        </div>
+
+        <div class="activity">
+			{{#each rows}}
+			<br>
+			<ol class="breadcrumb" style="background-color: #ffffff;">
+				<li class="breadcrumb-item"><a href="/dashboard">Back to Doctor's Details</a></li>
+				<li class="breadcrumb-item active" aria-current="page">View {{this.fullname}}'s Details</li>
+			</ol>
+			<br>
+			
+			<div class="card" style="width: 80%;margin: 0 auto;text-align:center">
+				<div class="card-header text-white bg-primary"><h5 class="card-title"><label class="form-label">{{this.fullname}}'s Details</label></h5></div>
+				<div class="card-body">
+					<form style="width: 100%;margin: 0 auto;text-align:center" class="row g-3 needs-validation">
+					
+						<div class="col-12">
+							<div class="form-floating mb-3">
+										
+								{{#each ../result}}
+									<img src="/images/{{this.image}}" class="avatar" id="avatar" alt="User Profile Picture"/>
+								{{/each}}
+							</div>
+						</div>
+						
+				
+						{{#each ../result}}
+						<div class="col-12">
+							<div class="form-floating mb-3">
+								<input type="text" class="form-control" id="fullname" name= "fullname" value="{{this.fullname}}" disabled>
+								<label class="form-label" id="fullname" name= "fullname">Doctor's Name:</label>
+							</div>
+						</div>
+						<div class="col-12">
+							<div class="form-floating mb-3">
+								<input type="text" class="form-control" id="ic" name= "ic" value="{{this.ic}}" disabled>
+								<label class="form-label" id="ic" name= "ic">Doctor's IC:</label>
+							</div>
+						</div>
+						<div class="col-12">
+							<div class="form-floating mb-3">
+								<input type="text" class="form-control" id="email" name= "email" value="{{this.email}}" disabled>
+								<label class="form-label" id="email" name= "email">Doctor's Email:</label>
+							</div>
+						</div>
+						{{/each}}
+						
+						<div class="col-12">
+							<div class="form-floating mb-3">
+								<input type="text" class="form-control" id="home_address" name= "home_address" value="{{this.home_address}}" disabled>
+								<label class="form-label" id="home_address" name= "home_address">Doctor's Home Address:</label>
+							</div>
+						</div>
+						
+						<div class="col-12">
+							<div class="form-floating mb-3">
+								<input type="text" class="form-control" id="phone_number" name= "phone_number" value="{{this.phone_number}}" disabled>
+								<label class="form-label" id="phone_number" name= "phone_number">Doctor's Phone Number:</label>
+							</div>
+						</div>
+						
+						
+					</form>
+				</div>
+			</div>
+			
+			{{/each}}
+		
+        </div>
+    </div>
+</section>
+{{/if}}
